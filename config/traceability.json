@@ -1,0 +1,212 @@
+{
+  "assessment_file": "RA-S2-WGH-01.json",
+  "note": "Demo traceability metadata; not a Ply integration API contract. Unmodeled components appear only in the hardware inventory.",
+  "components": [
+    {
+      "reference": "PER-01",
+      "assessment_element_id": "bbcf188b-8f12-491b-9e7d-5db4b8660d9d",
+      "representation": "snapshot_behavior",
+      "implementation_paths": [
+        "config/robot.json",
+        "scrub_s2/perception.py",
+        "scrub_s2/teleoperation.py"
+      ]
+    },
+    {
+      "reference": "PER-02",
+      "assessment_element_id": "bdfca204-6f70-435e-9315-b1d4d30e1f7c",
+      "representation": "snapshot_behavior",
+      "implementation_paths": [
+        "config/robot.json",
+        "scrub_s2/safety.py"
+      ]
+    },
+    {
+      "reference": "PER-03",
+      "assessment_element_id": "1ef7f9c1-30e6-4e56-bb1a-85f33728d734",
+      "representation": "inventory_only",
+      "implementation_paths": [
+        "hardware/bom.csv"
+      ]
+    },
+    {
+      "reference": "PER-04",
+      "assessment_element_id": "b713dff8-22db-4ed5-8c6a-9252ff98001b",
+      "representation": "snapshot_behavior",
+      "implementation_paths": [
+        "scrub_s2/safety.py"
+      ]
+    },
+    {
+      "reference": "PER-05",
+      "assessment_element_id": "4a9787e6-5a7b-4761-ab4f-59eeeaedede4",
+      "representation": "snapshot_behavior",
+      "implementation_paths": [
+        "scrub_s2/safety.py"
+      ]
+    },
+    {
+      "reference": "DRV-01",
+      "assessment_element_id": "ba20ac8a-c792-4747-aacd-d904bebe09a9",
+      "representation": "snapshot_behavior",
+      "implementation_paths": [
+        "scrub_s2/controller.py"
+      ]
+    },
+    {
+      "reference": "DRV-02",
+      "assessment_element_id": "6d98fef2-57f0-4aea-b5f7-340563167a92",
+      "representation": "snapshot_behavior",
+      "implementation_paths": [
+        "scrub_s2/controller.py"
+      ]
+    },
+    {
+      "reference": "DRV-03",
+      "assessment_element_id": "7b67672b-4046-4005-98f9-941b5ca4f7f6",
+      "representation": "inventory_only",
+      "implementation_paths": [
+        "hardware/bom.csv"
+      ]
+    },
+    {
+      "reference": "CLN-01",
+      "assessment_element_id": "a389ef3b-1b2e-4a96-9ccc-ea9f9296225f",
+      "representation": "snapshot_behavior",
+      "implementation_paths": [
+        "config/robot.json",
+        "scrub_s2/controller.py"
+      ]
+    },
+    {
+      "reference": "CLN-02",
+      "assessment_element_id": "0b844cd0-91c1-4311-9da0-3ef8a4f5006d",
+      "representation": "inventory_only",
+      "implementation_paths": [
+        "hardware/bom.csv"
+      ]
+    },
+    {
+      "reference": "CLN-03.1",
+      "assessment_element_id": "0ca9ff30-6e23-4dfc-8e31-d9b3ae267458",
+      "representation": "inventory_only",
+      "implementation_paths": [
+        "hardware/bom.csv"
+      ]
+    },
+    {
+      "reference": "CLN-03.2",
+      "assessment_element_id": "03c73a8a-54a0-4566-a130-b730a0e6d71f",
+      "representation": "inventory_only",
+      "implementation_paths": [
+        "hardware/bom.csv"
+      ]
+    },
+    {
+      "reference": "PWR-01",
+      "assessment_element_id": "0c13a998-0efb-4920-961a-a8d57044b648",
+      "representation": "inventory_only",
+      "implementation_paths": [
+        "hardware/bom.csv"
+      ]
+    },
+    {
+      "reference": "PWR-02",
+      "assessment_element_id": "a6ce0496-bd63-4a49-90f2-5e514ed8436a",
+      "representation": "inventory_only",
+      "implementation_paths": [
+        "hardware/bom.csv"
+      ]
+    },
+    {
+      "reference": "PWR-03",
+      "assessment_element_id": "2e5c03cd-b3d2-4b33-9cd3-31658c1d3897",
+      "representation": "inventory_only",
+      "implementation_paths": [
+        "hardware/bom.csv"
+      ]
+    },
+    {
+      "reference": "CTL-01",
+      "assessment_element_id": "81074fa6-4b8a-4f64-a7d7-c8a7c11c9f5c",
+      "representation": "snapshot_behavior",
+      "implementation_paths": [
+        "scrub_s2/controller.py",
+        "scrub_s2/perception.py"
+      ]
+    },
+    {
+      "reference": "CTL-02",
+      "assessment_element_id": "e4979b1c-95fa-433b-ab45-06321369b23d",
+      "representation": "snapshot_behavior",
+      "implementation_paths": [
+        "scrub_s2/safety.py"
+      ]
+    },
+    {
+      "reference": "CTL-03.1",
+      "assessment_element_id": "bc1f356e-1ad1-4e44-9a0c-4cf632757dc1",
+      "representation": "snapshot_behavior",
+      "implementation_paths": [
+        "scrub_s2/safety.py"
+      ]
+    },
+    {
+      "reference": "CTL-03.2",
+      "assessment_element_id": "0cf0fe75-553c-46df-94a7-f92af3ad8052",
+      "representation": "snapshot_behavior",
+      "implementation_paths": [
+        "scrub_s2/safety.py"
+      ]
+    },
+    {
+      "reference": "CTL-04",
+      "assessment_element_id": "0f4d4f47-95d2-4d75-92c8-53265a9698e9",
+      "representation": "snapshot_behavior",
+      "implementation_paths": [
+        "scrub_s2/teleoperation.py",
+        "scrub_s2/safety.py"
+      ]
+    },
+    {
+      "reference": "HMI-01",
+      "assessment_element_id": "ca7ee1b0-3e49-4da0-b614-1060c86d6c2f",
+      "representation": "inventory_only",
+      "implementation_paths": [
+        "hardware/bom.csv"
+      ]
+    },
+    {
+      "reference": "HMI-02",
+      "assessment_element_id": "ffbb84de-d759-47d1-b39e-56d1f579a339",
+      "representation": "inventory_only",
+      "implementation_paths": [
+        "hardware/bom.csv"
+      ]
+    },
+    {
+      "reference": "HMI-03",
+      "assessment_element_id": "80657680-0c44-455d-b593-37e7ce9a0363",
+      "representation": "inventory_only",
+      "implementation_paths": [
+        "hardware/bom.csv"
+      ]
+    },
+    {
+      "reference": "DCK-01",
+      "assessment_element_id": "6edec9bd-e91a-48b3-8dc5-fa7510064129",
+      "representation": "inventory_only",
+      "implementation_paths": [
+        "hardware/bom.csv"
+      ]
+    },
+    {
+      "reference": "DCK-02",
+      "assessment_element_id": "1c8aedca-eb3e-446c-b97b-fe1a8c97c7c3",
+      "representation": "inventory_only",
+      "implementation_paths": [
+        "hardware/bom.csv"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Westbrook General Hospital",
+  "level": 0,
+  "route_reference": "S2-ROUTE-E0 v3",
+  "site_plan_reference": "WGH-FM-PLN-112 rev C",
+  "zones": ["E0-1", "E0-2", "E0-3", "Central atrium", "E0-S2"],
+  "operating_hours": ["05:30", "22:00"],
+  "atrium_cleaning_windows": [["06:00", "08:00"], ["20:00", "22:00"]],
+  "max_ramp_degrees": 2,
+  "edge_clearance_m": 1,
+  "no_go_features": ["Atrium stairs", "Mezzanine edge"],
+  "fire_door_refs": ["FD-E0-04", "FD-E0-05"],
+  "excluded_areas": ["Wards", "Operating theatres", "Lifts", "Stairs", "Outdoor areas"],
+  "note": "Descriptive assessment context only; the snapshot simulator does not implement a route planner or enforce schedules."
+}

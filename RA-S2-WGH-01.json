@@ -1,0 +1,1634 @@
+{
+  "format": "ply-risk-assessment",
+  "version": 3,
+  "exportedAt": "2026-10-19T12:23:13.167Z",
+  "assessment": {
+    "title": "Ply Scrub S2 hospital corridor trial",
+    "reference": "RA-S2-WGH-01",
+    "scope": {
+      "type": "SITE_SPECIFIC",
+      "companyCustomer": "Westbrook General Hospital, Facilities Management",
+      "siteAddressBuilding": "Main building, level 0: east corridor (E0-1 to E0-3), central atrium and service corridor E0-S2",
+      "robotModelUnitIds": "Ply Scrub S2, hospital variant H, units S2-0417 and S2-0418",
+      "hardwareSoftwareConfiguration": "Front RGB camera, 2D safety LiDAR, ultrasonic array, bumper and cliff sensors; 25.2 V Li-ion (NMC) battery; navigation software 4.2.1; safety PLC firmware 2.3.0; docking station DS-2.",
+      "applicationObjectives": "Six-month trial of autonomous scrubbing of the public corridor and atrium during opening hours, to replace two manual scrubber shifts and measure cleaning quality and incidents.",
+      "permittedModes": "Autonomous cleaning and navigation; teleoperated recovery by Ply remote operations; manual / setup mode for mapping and maintenance (Ply staff only); charging at the docking station.",
+      "operatingLimits": "Autonomous up to 0.8 m/s, teleoperated up to 0.5 m/s, setup mode up to 0.3 m/s; level floors and ramps up to 2°; dry indoor floors; 05:30–22:00; atrium cleaning passes only 06:00–08:00 and 20:00–22:00.",
+      "accessArrangement": "SHARED_WITH_PUBLIC",
+      "sitePlanRouteReference": "Site plan WGH-FM-PLN-112 rev C; route map S2-ROUTE-E0 v3 with no-go zones at the atrium stairs, the mezzanine edge and fire doors FD-E0-04/05.",
+      "cleaningAgentsSdsReferences": "NeutraClean 7 pH-neutral floor detergent, pre-diluted cartridges, SDS rev 4 (2025-11).",
+      "chargingStorageLocation": "Docking station in service corridor E0-S2: a separate fire compartment with a smoke detector linked to the building fire alarm; no combustibles stored within 2 m.",
+      "recoveryIsolationProcedure": "Press either e-stop, release the brakes with the manual lever and push the robot to the corridor side; restart from the touchscreen (S2-SOP-04). For maintenance: key switch off, remove the battery service plug and lock out (S2-SOP-07).",
+      "foreseeableMisuse": "Children riding on or chasing the robot; visitors stepping over the squeegee; patients with walking aids or wheelchairs crossing close in front; staff using it as a trolley; bags or coats covering the sensors; pushing it while it is running.",
+      "excludedTasksAreas": "Wards, operating theatres, lifts, stairs and outdoor areas; travel between floors; fixture cleaning (by hand, see T08).",
+      "teamCompetence": "J. Okafor (safety engineer, ISO 13849 functional safety, 9 years); M. Lindqvist (Ply application engineer); R. Haddad (hospital facilities manager); the hospital fire safety officer; A. Brennan (cleaning contractor supervisor).",
+      "baselineAssessmentReference": "RA-S2-BASE-03, Ply Scrub S2 common robot baseline, rev 3",
+      "applicableRequirements": "ISO 13482 (personal care robots), ISO 13849-1 and -2, IEC 60335-2-72 (commercial floor treatment machines), IEC 62133-2 and UN 38.3 (battery), hospital fire safety policy FS-04, cleaning contractor method statements.",
+      "trialStartDate": "2026-09-01",
+      "trialEndDate": "2027-02-28",
+      "reviewTriggerNextReview": "Any change to sensors, safety functions, battery or safety-related software; any incident or near miss; otherwise the next review on 2026-12-01."
+    },
+    "release": {
+      "scopeConfigurationConfirmed": true,
+      "taskInventoryComplete": true,
+      "siteControlsVerified": null,
+      "instructionsTrainingComplete": false,
+      "applicableApprovalsResolved": true,
+      "engineeringDecision": "APPROVED",
+      "customerSiteDecision": "PENDING",
+      "approverNamesEvidence": "Engineering: J. Okafor, 2026-08-28 (release memo S2-REL-014). Customer / site: pending the fire safety officer's sign-off of HS-05 and the refill training (HS-09).",
+      "releaseDate": null
+    },
+    "tasks": [
+      {
+        "id": "b54ea96a-b752-42bb-b8cb-1480f301668e",
+        "reference": "T01",
+        "category": "NAVIGATION",
+        "mode": "AUTONOMOUS",
+        "areaTaskDetails": "Autonomous travel between cleaning zones along the east corridor (E0-1 to E0-3) and across the central atrium, which has a mezzanine edge and stairs. Multiple groups: visitors, patients (some with walking aids or in wheelchairs), children and hospital staff.",
+        "peopleExposed": "MULTIPLE_GROUPS",
+        "reviewStatus": "HAZARDS_RECORDED",
+        "justification": null,
+        "systemElementIds": [
+          "bbcf188b-8f12-491b-9e7d-5db4b8660d9d",
+          "bdfca204-6f70-435e-9315-b1d4d30e1f7c",
+          "1ef7f9c1-30e6-4e56-bb1a-85f33728d734",
+          "4a9787e6-5a7b-4761-ab4f-59eeeaedede4",
+          "ba20ac8a-c792-4747-aacd-d904bebe09a9",
+          "81074fa6-4b8a-4f64-a7d7-c8a7c11c9f5c",
+          "e4979b1c-95fa-433b-ab45-06321369b23d"
+        ],
+        "scenarios": [
+          {
+            "id": "74237d43-1e4c-4687-938a-391c942f2b40",
+            "reference": "HS-01",
+            "hazardCategory": "COLLISION_IMPACT",
+            "eventHarm": "The robot drives into a pedestrian crossing its path in the corridor: bruising or a fall, worse for frail patients.",
+            "systemElementIds": [
+              "ba20ac8a-c792-4747-aacd-d904bebe09a9",
+              "bdfca204-6f70-435e-9315-b1d4d30e1f7c",
+              "81074fa6-4b8a-4f64-a7d7-c8a7c11c9f5c"
+            ],
+            "initial": {
+              "severity": "S2",
+              "exposure": "E2",
+              "avoidance": "A2",
+              "rationale": "180 kg at up to 0.8 m/s among many pedestrians all day; a frail patient may not step aside in time."
+            },
+            "reduction": {
+              "primary": "SAFEGUARDING_SRP_CS",
+              "measuresDesignRationale": "Safety LiDAR protective fields scaled to speed stop the robot (STO and brakes) before contact; the bumper stops it on contact. Camera person detection slows the robot to 0.3 m/s near people (early slowdown, not safety-rated)."
+            },
+            "safetyFunctionElementIds": [
+              "bbcf188b-8f12-491b-9e7d-5db4b8660d9d",
+              "bdfca204-6f70-435e-9315-b1d4d30e1f7c",
+              "b713dff8-22db-4ed5-8c6a-9252ff98001b",
+              "e4979b1c-95fa-433b-ab45-06321369b23d",
+              "6d98fef2-57f0-4aea-b5f7-340563167a92"
+            ],
+            "functionalSafety": {
+              "srpCsUsed": true,
+              "selectedPlr": "PL_D",
+              "selectedCategory": "CAT_3",
+              "sfIdsRequirementBasis": "SF-01 Protective stop on LiDAR protective field: safe state STO + brakes, stop within 0.25 m at 0.8 m/s. SF-02 Bumper contact stop: STO + brakes, response under 20 ms.",
+              "achievedPl": "PL_D",
+              "achievedCategory": "CAT_3",
+              "validation": "VALIDATED"
+            },
+            "implementation": {
+              "status": "IMPLEMENTED",
+              "assessmentVerification": "VERIFIED",
+              "physicalValidation": "PASSED",
+              "evidenceReferences": "TR-S2-031 stopping distance test; VAL-S2-012 SF-01/SF-02 validation report; site walk-through 2026-08-26.",
+              "newHazardsReview": "IDENTIFIED_CLOSED",
+              "newHazardScenarioIds": [
+                "8243a927-8386-45d9-a41c-5f47dfccc584"
+              ],
+              "newHazardClosureBasis": "Frequent protective stops leave the robot standing in the corridor as an obstacle: assessed in HS-03 and closed."
+            },
+            "residual": {
+              "severity": "S1",
+              "exposure": "E1",
+              "avoidance": "A2",
+              "rationale": "Contact only below 0.3 m/s after a failed detection, so harm is minor; people near the robot are rarely in its path after slowdown.",
+              "e0Basis": "NOT_APPLICABLE"
+            },
+            "review": {
+              "decision": "ACCEPT",
+              "reviewer": "J. Okafor",
+              "date": "2026-08-28"
+            },
+            "actionOwner": "M. Lindqvist (Ply)",
+            "dueDate": "2026-12-01"
+          },
+          {
+            "id": "1f77a7f0-ad76-42c4-a607-8bfc9351333d",
+            "reference": "HS-02",
+            "hazardCategory": "COLLISION_IMPACT",
+            "eventHarm": "A child, or a person in a wheelchair or with a walking frame, is not detected because they are below or between the LiDAR beams, and is struck by the robot.",
+            "systemElementIds": [
+              "bbcf188b-8f12-491b-9e7d-5db4b8660d9d",
+              "bdfca204-6f70-435e-9315-b1d4d30e1f7c",
+              "ba20ac8a-c792-4747-aacd-d904bebe09a9"
+            ],
+            "initial": {
+              "severity": "S2",
+              "exposure": "E2",
+              "avoidance": "A3",
+              "rationale": "Children and wheelchair users are frequent in the atrium; they may not see the robot or be unable to move away."
+            },
+            "reduction": {
+              "primary": "SAFEGUARDING_SRP_CS",
+              "measuresDesignRationale": "Camera person detection recognises children, wheelchairs and walking aids and slows the robot to 0.3 m/s within 2 m; the ultrasonic array covers low obstacles; the bumper stops the robot on contact."
+            },
+            "safetyFunctionElementIds": [
+              "bbcf188b-8f12-491b-9e7d-5db4b8660d9d",
+              "1ef7f9c1-30e6-4e56-bb1a-85f33728d734",
+              "b713dff8-22db-4ed5-8c6a-9252ff98001b",
+              "e4979b1c-95fa-433b-ab45-06321369b23d"
+            ],
+            "functionalSafety": {
+              "srpCsUsed": true,
+              "selectedPlr": "PL_D",
+              "selectedCategory": "CAT_3",
+              "sfIdsRequirementBasis": "SF-02 Bumper contact stop (PL d, Cat 3). SF-03 Person-detection slowdown is a complementary measure, not part of the safety function; validated as a measure in VAL-S2-014.",
+              "achievedPl": "PL_D",
+              "achievedCategory": "CAT_3",
+              "validation": "VALIDATED"
+            },
+            "implementation": {
+              "status": "IMPLEMENTED",
+              "assessmentVerification": "VERIFIED",
+              "physicalValidation": "PASSED",
+              "evidenceReferences": "VAL-S2-014 person detection test with child-size and wheelchair mannequins (98.6 % detection within 2 m); VAL-S2-012.",
+              "newHazardsReview": "NONE_IDENTIFIED",
+              "newHazardScenarioIds": null,
+              "newHazardClosureBasis": "Measures reviewed in the hazard workshop; they introduce no new hazards."
+            },
+            "residual": {
+              "severity": "S2",
+              "exposure": "E1",
+              "avoidance": "A2",
+              "rationale": "Detection slows the robot early, so remaining contacts are rare; a child at 0.3 m/s can still be pushed over.",
+              "e0Basis": "NOT_APPLICABLE"
+            },
+            "review": {
+              "decision": "ACCEPT",
+              "reviewer": "J. Okafor",
+              "date": "2026-08-28"
+            },
+            "actionOwner": "M. Lindqvist (Ply)",
+            "dueDate": "2026-12-01"
+          },
+          {
+            "id": "8243a927-8386-45d9-a41c-5f47dfccc584",
+            "reference": "HS-03",
+            "hazardCategory": "SLIP_TRIP_FALL",
+            "eventHarm": "After a protective stop, the robot stands in a busy corridor and a visitor walks into it or trips over the squeegee.",
+            "systemElementIds": [
+              "ffbb84de-d759-47d1-b39e-56d1f579a339",
+              "0b844cd0-91c1-4311-9da0-3ef8a4f5006d"
+            ],
+            "initial": {
+              "severity": "S1",
+              "exposure": "E2",
+              "avoidance": "A2",
+              "rationale": "Stops are frequent in busy periods; a person looking at signage may not notice a stationary robot."
+            },
+            "reduction": {
+              "primary": "WARNINGS_AWARENESS",
+              "measuresDesignRationale": "Warning light and floor projection stay on while the robot is stopped; a chime sounds every 10 s; the robot moves to the corridor side after 30 s."
+            },
+            "safetyFunctionElementIds": [
+              "ffbb84de-d759-47d1-b39e-56d1f579a339",
+              "80657680-0c44-455d-b593-37e7ce9a0363"
+            ],
+            "functionalSafety": {
+              "srpCsUsed": false,
+              "selectedPlr": "NOT_APPLICABLE",
+              "selectedCategory": "NOT_APPLICABLE",
+              "sfIdsRequirementBasis": null,
+              "achievedPl": "NOT_APPLICABLE",
+              "achievedCategory": "NOT_APPLICABLE",
+              "validation": "NOT_APPLICABLE"
+            },
+            "implementation": {
+              "status": "IMPLEMENTED",
+              "assessmentVerification": "VERIFIED",
+              "physicalValidation": "PASSED",
+              "evidenceReferences": "Site observation log OBS-WGH-03 (two weeks, no trips recorded).",
+              "newHazardsReview": "NONE_IDENTIFIED",
+              "newHazardScenarioIds": null,
+              "newHazardClosureBasis": "Measures reviewed in the hazard workshop; they introduce no new hazards."
+            },
+            "residual": {
+              "severity": "S1",
+              "exposure": "E1",
+              "avoidance": "A1",
+              "rationale": "Visible and audible warnings and the move to the side make a trip unlikely and avoidable.",
+              "e0Basis": "NOT_APPLICABLE"
+            },
+            "review": {
+              "decision": "ACCEPT",
+              "reviewer": "J. Okafor",
+              "date": "2026-08-28"
+            },
+            "actionOwner": "Facilities (R. Haddad)",
+            "dueDate": "2026-12-01"
+          },
+          {
+            "id": "5475c73c-9534-4052-8ee8-797a71e078b8",
+            "reference": "HS-04",
+            "hazardCategory": "TIP_OVER_FALLING_ROBOT",
+            "eventHarm": "The robot drives off the atrium mezzanine edge or down the stairs and falls onto people below: serious or fatal injury.",
+            "systemElementIds": [
+              "4a9787e6-5a7b-4761-ab4f-59eeeaedede4",
+              "ba20ac8a-c792-4747-aacd-d904bebe09a9",
+              "6d98fef2-57f0-4aea-b5f7-340563167a92"
+            ],
+            "initial": {
+              "severity": "S3",
+              "exposure": "E2",
+              "avoidance": "A3",
+              "rationale": "The route passes the mezzanine edge on every atrium pass; people below cannot see or avoid a falling robot."
+            },
+            "reduction": {
+              "primary": "SAFEGUARDING_SRP_CS",
+              "measuresDesignRationale": "Cliff sensors stop the robot (STO and brakes) before a drop; no-go zones keep it 1 m from the edge and stairs; a 15 cm upstand on the mezzanine edge."
+            },
+            "safetyFunctionElementIds": [
+              "4a9787e6-5a7b-4761-ab4f-59eeeaedede4",
+              "e4979b1c-95fa-433b-ab45-06321369b23d",
+              "6d98fef2-57f0-4aea-b5f7-340563167a92"
+            ],
+            "functionalSafety": {
+              "srpCsUsed": true,
+              "selectedPlr": "PL_E",
+              "selectedCategory": "CAT_3",
+              "sfIdsRequirementBasis": "SF-04 Cliff stop: dual-channel cliff sensors to the safety PLC, STO + brakes, stop within 0.15 m at 0.8 m/s. Cat 3 with high DC and MTTFd reaches PL e.",
+              "achievedPl": "PL_E",
+              "achievedCategory": "CAT_3",
+              "validation": "VALIDATED"
+            },
+            "implementation": {
+              "status": "IMPLEMENTED",
+              "assessmentVerification": "VERIFIED",
+              "physicalValidation": "PASSED",
+              "evidenceReferences": "VAL-S2-015 cliff stop test at the mezzanine edge (30 runs, all stopped within 0.11 m); drawing WGH-ARCH-221 upstand.",
+              "newHazardsReview": "NONE_IDENTIFIED",
+              "newHazardScenarioIds": null,
+              "newHazardClosureBasis": "Measures reviewed in the hazard workshop; they introduce no new hazards."
+            },
+            "residual": {
+              "severity": "S3",
+              "exposure": "E0",
+              "avoidance": "A3",
+              "rationale": "Exposure prevented by the validated cliff stop and the fixed upstand.",
+              "e0Basis": "VALIDATED_SAFETY_FUNCTION"
+            },
+            "review": {
+              "decision": "ACCEPT",
+              "reviewer": "J. Okafor",
+              "date": "2026-08-28"
+            },
+            "actionOwner": "M. Lindqvist (Ply)",
+            "dueDate": "2026-12-01"
+          },
+          {
+            "id": "c960497d-fd88-47a7-b085-33f9edc01dbb",
+            "reference": "HS-05",
+            "hazardCategory": "OTHER",
+            "eventHarm": "Other: during a fire alarm the robot stops in the corridor or in a fire door opening and delays evacuation, or keeps a fire door from closing.",
+            "systemElementIds": null,
+            "initial": {
+              "severity": "S3",
+              "exposure": "E1",
+              "avoidance": "A2",
+              "rationale": "Evacuations are rare, but a blocked fire door or escape route could cost lives."
+            },
+            "reduction": {
+              "primary": "ADMINISTRATIVE_CONTROLS",
+              "measuresDesignRationale": "No-stop zones at fire doors FD-E0-04 and FD-E0-05; on a fire alarm, staff push the robot aside with the brakes released. Integration with the building fire alarm is planned but not yet in place."
+            },
+            "safetyFunctionElementIds": null,
+            "functionalSafety": {
+              "srpCsUsed": false,
+              "selectedPlr": "NOT_APPLICABLE",
+              "selectedCategory": "NOT_APPLICABLE",
+              "sfIdsRequirementBasis": null,
+              "achievedPl": "NOT_APPLICABLE",
+              "achievedCategory": "NOT_APPLICABLE",
+              "validation": "NOT_APPLICABLE"
+            },
+            "implementation": {
+              "status": "IN_PROGRESS",
+              "assessmentVerification": "PENDING",
+              "physicalValidation": "PENDING",
+              "evidenceReferences": "Fire safety officer meeting notes 2026-08-21; fire alarm integration request FM-CR-0193.",
+              "newHazardsReview": "NOT_REVIEWED",
+              "newHazardScenarioIds": null,
+              "newHazardClosureBasis": null
+            },
+            "residual": {
+              "severity": "S2",
+              "exposure": "E1",
+              "avoidance": "A1",
+              "rationale": "Staff can clear the robot in under 30 s; residual delay is short once the procedure is trained.",
+              "e0Basis": "NOT_APPLICABLE"
+            },
+            "review": {
+              "decision": "PENDING",
+              "reviewer": "J. Okafor",
+              "date": null
+            },
+            "actionOwner": "Facilities (R. Haddad)",
+            "dueDate": "2026-11-15"
+          }
+        ]
+      },
+      {
+        "id": "77678394-e0f9-4551-b23a-c9da9829c6d3",
+        "reference": "T02",
+        "category": "SURFACE_CLEANING",
+        "mode": "AUTONOMOUS",
+        "areaTaskDetails": "Wet scrubbing of the corridor and atrium vinyl floors: atrium passes 06:00–08:00 and 20:00–22:00, corridor passes during the day with people present. Multiple groups: visitors, patients (some with walking aids or in wheelchairs), children and hospital staff.",
+        "peopleExposed": "MULTIPLE_GROUPS",
+        "reviewStatus": "HAZARDS_RECORDED",
+        "justification": null,
+        "systemElementIds": [
+          "a389ef3b-1b2e-4a96-9ccc-ea9f9296225f",
+          "0b844cd0-91c1-4311-9da0-3ef8a4f5006d",
+          "03c73a8a-54a0-4566-a130-b730a0e6d71f",
+          "ffbb84de-d759-47d1-b39e-56d1f579a339"
+        ],
+        "scenarios": [
+          {
+            "id": "e30b5a04-e0cf-4272-825e-c4c8548527e5",
+            "reference": "HS-06",
+            "hazardCategory": "SLIP_TRIP_FALL",
+            "eventHarm": "A visitor slips on the wet floor behind the robot and falls: fractures are possible for elderly patients.",
+            "systemElementIds": null,
+            "initial": {
+              "severity": "S2",
+              "exposure": "E2",
+              "avoidance": "A2",
+              "rationale": "Corridor passes run with people present; a thin water film is hard to see on vinyl."
+            },
+            "reduction": {
+              "primary": "COMPLEMENTARY_MEASURES",
+              "measuresDesignRationale": "Squeegee recovery leaves the floor dry within 30 s; atrium cleaning only off-peak; the warning light projects a 'wet floor' symbol behind the robot."
+            },
+            "safetyFunctionElementIds": null,
+            "functionalSafety": {
+              "srpCsUsed": false,
+              "selectedPlr": "NOT_APPLICABLE",
+              "selectedCategory": "NOT_APPLICABLE",
+              "sfIdsRequirementBasis": null,
+              "achievedPl": "NOT_APPLICABLE",
+              "achievedCategory": "NOT_APPLICABLE",
+              "validation": "NOT_APPLICABLE"
+            },
+            "implementation": {
+              "status": "IMPLEMENTED",
+              "assessmentVerification": "VERIFIED",
+              "physicalValidation": "PASSED",
+              "evidenceReferences": "Slip test report ST-WGH-07 (pendulum test value 41 wet, 58 after 30 s).",
+              "newHazardsReview": "NONE_IDENTIFIED",
+              "newHazardScenarioIds": null,
+              "newHazardClosureBasis": "Measures reviewed in the hazard workshop; they introduce no new hazards."
+            },
+            "residual": {
+              "severity": "S2",
+              "exposure": "E1",
+              "avoidance": "A1",
+              "rationale": "The wet strip is short and marked; most people see and avoid it.",
+              "e0Basis": "NOT_APPLICABLE"
+            },
+            "review": {
+              "decision": "ACCEPT",
+              "reviewer": "J. Okafor",
+              "date": "2026-08-28"
+            },
+            "actionOwner": "Cleaning contractor (A. Brennan)",
+            "dueDate": "2026-12-01"
+          },
+          {
+            "id": "aecf254b-c0f7-4bb8-bf00-1b318b554ba0",
+            "reference": "HS-07",
+            "hazardCategory": "ENTANGLEMENT",
+            "eventHarm": "A child's fingers or loose clothing are drawn under the splash skirt into the rotating brushes.",
+            "systemElementIds": [
+              "a389ef3b-1b2e-4a96-9ccc-ea9f9296225f"
+            ],
+            "initial": {
+              "severity": "S2",
+              "exposure": "E1",
+              "avoidance": "A2",
+              "rationale": "Brushes are covered by the skirt, so reaching them needs deliberate action, but children are curious."
+            },
+            "reduction": {
+              "primary": "SAFEGUARDING_SRP_CS",
+              "measuresDesignRationale": "Rubber splash skirt 2 cm above the floor; brushes stop when the deck is lifted or the robot stops (SF-05)."
+            },
+            "safetyFunctionElementIds": [
+              "a389ef3b-1b2e-4a96-9ccc-ea9f9296225f",
+              "e4979b1c-95fa-433b-ab45-06321369b23d"
+            ],
+            "functionalSafety": {
+              "srpCsUsed": true,
+              "selectedPlr": "PL_D",
+              "selectedCategory": "CAT_2",
+              "sfIdsRequirementBasis": "SF-05 Brush stop on deck lift or robot stop: STO on brush motors within 0.5 s.",
+              "achievedPl": "PL_D",
+              "achievedCategory": "CAT_2",
+              "validation": "VALIDATED"
+            },
+            "implementation": {
+              "status": "IMPLEMENTED",
+              "assessmentVerification": "VERIFIED",
+              "physicalValidation": "PASSED",
+              "evidenceReferences": "VAL-S2-016 brush stop test; test-finger probe check of the skirt gap.",
+              "newHazardsReview": "NONE_IDENTIFIED",
+              "newHazardScenarioIds": null,
+              "newHazardClosureBasis": "Measures reviewed in the hazard workshop; they introduce no new hazards."
+            },
+            "residual": {
+              "severity": "S1",
+              "exposure": "E1",
+              "avoidance": "A1",
+              "rationale": "The brushes stop quickly and the skirt gap rejects the test finger: minor pinching at most.",
+              "e0Basis": "NOT_APPLICABLE"
+            },
+            "review": {
+              "decision": "ACCEPT",
+              "reviewer": "J. Okafor",
+              "date": "2026-08-28"
+            },
+            "actionOwner": "M. Lindqvist (Ply)",
+            "dueDate": "2026-12-01"
+          },
+          {
+            "id": "7878541e-407c-4885-9bf5-7ccd631eec12",
+            "reference": "HS-08",
+            "hazardCategory": "CHEMICAL_BIOLOGICAL_EXPOSURE",
+            "eventHarm": "Cleaning solution sprays from the brush deck onto a passer-by's skin or eyes: irritation.",
+            "systemElementIds": [
+              "a389ef3b-1b2e-4a96-9ccc-ea9f9296225f",
+              "03c73a8a-54a0-4566-a130-b730a0e6d71f"
+            ],
+            "initial": {
+              "severity": "S1",
+              "exposure": "E2",
+              "avoidance": "A1",
+              "rationale": "Diluted detergent only causes minor irritation; spray is visible and easily avoided."
+            },
+            "reduction": {
+              "primary": "SUBSTITUTION",
+              "measuresDesignRationale": "pH-neutral detergent at 0.5 % dilution; dosing pump flow limited in software; splash skirt."
+            },
+            "safetyFunctionElementIds": [
+              "03c73a8a-54a0-4566-a130-b730a0e6d71f"
+            ],
+            "functionalSafety": {
+              "srpCsUsed": false,
+              "selectedPlr": "NOT_APPLICABLE",
+              "selectedCategory": "NOT_APPLICABLE",
+              "sfIdsRequirementBasis": null,
+              "achievedPl": "NOT_APPLICABLE",
+              "achievedCategory": "NOT_APPLICABLE",
+              "validation": "NOT_APPLICABLE"
+            },
+            "implementation": {
+              "status": "IMPLEMENTED",
+              "assessmentVerification": "VERIFIED",
+              "physicalValidation": "PASSED",
+              "evidenceReferences": "SDS NeutraClean 7 rev 4; dosing calibration record DC-0417.",
+              "newHazardsReview": "NONE_IDENTIFIED",
+              "newHazardScenarioIds": null,
+              "newHazardClosureBasis": "Measures reviewed in the hazard workshop; they introduce no new hazards."
+            },
+            "residual": {
+              "severity": "S1",
+              "exposure": "E1",
+              "avoidance": "A1",
+              "rationale": "Low concentration and the skirt make contact rare and harmless.",
+              "e0Basis": "NOT_APPLICABLE"
+            },
+            "review": {
+              "decision": "ACCEPT",
+              "reviewer": "J. Okafor",
+              "date": "2026-08-28"
+            },
+            "actionOwner": "Cleaning contractor (A. Brennan)",
+            "dueDate": "2026-12-01"
+          }
+        ]
+      },
+      {
+        "id": "a5c42b00-cd8f-49d4-9175-1285a781bde1",
+        "reference": "T03",
+        "category": "CHEMICAL_REFILL",
+        "mode": "STOPPED_ENERGIZED",
+        "areaTaskDetails": "The contractor cleaner fills the solution tank from a pre-diluted detergent cartridge, or from the tap with a dosing bottle, in cleaners' room E0-C1, about twice a day.",
+        "peopleExposed": "CONTRACTOR_CLEANER",
+        "reviewStatus": "HAZARDS_RECORDED",
+        "justification": null,
+        "systemElementIds": [
+          "0ca9ff30-6e23-4dfc-8e31-d9b3ae267458",
+          "03c73a8a-54a0-4566-a130-b730a0e6d71f",
+          "ca7ee1b0-3e49-4da0-b614-1060c86d6c2f"
+        ],
+        "scenarios": [
+          {
+            "id": "03db0021-9ff9-4cfb-912b-45b428cc97a7",
+            "reference": "HS-09",
+            "hazardCategory": "CHEMICAL_BIOLOGICAL_EXPOSURE",
+            "eventHarm": "Detergent concentrate splashes into the cleaner's eyes while filling the solution tank.",
+            "systemElementIds": [
+              "0ca9ff30-6e23-4dfc-8e31-d9b3ae267458",
+              "03c73a8a-54a0-4566-a130-b730a0e6d71f"
+            ],
+            "initial": {
+              "severity": "S2",
+              "exposure": "E1",
+              "avoidance": "A2",
+              "rationale": "Concentrate can cause eye damage; refills happen twice a day."
+            },
+            "reduction": {
+              "primary": "SUBSTITUTION",
+              "measuresDesignRationale": "Pre-diluted closed-loop cartridges with a dry-break coupling replace pouring concentrate; safety glasses for tap refills."
+            },
+            "safetyFunctionElementIds": [
+              "0ca9ff30-6e23-4dfc-8e31-d9b3ae267458"
+            ],
+            "functionalSafety": {
+              "srpCsUsed": false,
+              "selectedPlr": "NOT_APPLICABLE",
+              "selectedCategory": "NOT_APPLICABLE",
+              "sfIdsRequirementBasis": null,
+              "achievedPl": "NOT_APPLICABLE",
+              "achievedCategory": "NOT_APPLICABLE",
+              "validation": "NOT_APPLICABLE"
+            },
+            "implementation": {
+              "status": "IMPLEMENTED",
+              "assessmentVerification": "VERIFIED",
+              "physicalValidation": "PENDING",
+              "evidenceReferences": "Cartridge coupling specification CPL-22; refill training plan TRN-WGH-02 (sessions scheduled).",
+              "newHazardsReview": "NONE_IDENTIFIED",
+              "newHazardScenarioIds": null,
+              "newHazardClosureBasis": "Measures reviewed in the hazard workshop; they introduce no new hazards."
+            },
+            "residual": {
+              "severity": "S1",
+              "exposure": "E1",
+              "avoidance": "A2",
+              "rationale": "Closed-loop refill leaves only diluted solution; splashes are rare and minor.",
+              "e0Basis": "NOT_APPLICABLE"
+            },
+            "review": {
+              "decision": "PENDING",
+              "reviewer": "J. Okafor",
+              "date": null
+            },
+            "actionOwner": "Cleaning contractor (A. Brennan)",
+            "dueDate": "2026-10-31"
+          },
+          {
+            "id": "25fa17bf-4870-4678-9bac-a66872d19691",
+            "reference": "HS-10",
+            "hazardCategory": "ERGONOMIC_MANUAL_HANDLING",
+            "eventHarm": "The cleaner strains their back lifting a full 20 L container to the fill port.",
+            "systemElementIds": [
+              "0ca9ff30-6e23-4dfc-8e31-d9b3ae267458"
+            ],
+            "initial": {
+              "severity": "S1",
+              "exposure": "E2",
+              "avoidance": "A1",
+              "rationale": "Repeated lifting twice a day; the cleaner controls the lift."
+            },
+            "reduction": {
+              "primary": "ELIMINATION",
+              "measuresDesignRationale": "Fill port at waist height; cartridges weigh 5 kg; tap refills use a hose instead of a container."
+            },
+            "safetyFunctionElementIds": [
+              "0ca9ff30-6e23-4dfc-8e31-d9b3ae267458"
+            ],
+            "functionalSafety": {
+              "srpCsUsed": false,
+              "selectedPlr": "NOT_APPLICABLE",
+              "selectedCategory": "NOT_APPLICABLE",
+              "sfIdsRequirementBasis": null,
+              "achievedPl": "NOT_APPLICABLE",
+              "achievedCategory": "NOT_APPLICABLE",
+              "validation": "NOT_APPLICABLE"
+            },
+            "implementation": {
+              "status": "IMPLEMENTED",
+              "assessmentVerification": "VERIFIED",
+              "physicalValidation": "PASSED",
+              "evidenceReferences": "Manual handling assessment MH-WGH-05.",
+              "newHazardsReview": "NONE_IDENTIFIED",
+              "newHazardScenarioIds": null,
+              "newHazardClosureBasis": "Measures reviewed in the hazard workshop; they introduce no new hazards."
+            },
+            "residual": {
+              "severity": "S1",
+              "exposure": "E1",
+              "avoidance": "A1",
+              "rationale": "No heavy lifting remains.",
+              "e0Basis": "NOT_APPLICABLE"
+            },
+            "review": {
+              "decision": "ACCEPT",
+              "reviewer": "J. Okafor",
+              "date": "2026-08-28"
+            },
+            "actionOwner": "Cleaning contractor (A. Brennan)",
+            "dueDate": "2026-12-01"
+          }
+        ]
+      },
+      {
+        "id": "8b1ef3f5-5de6-409c-904e-bc0f32ddf1c3",
+        "reference": "T04",
+        "category": "CHARGING_DOCKING",
+        "mode": "CHARGING",
+        "areaTaskDetails": "The robot docks itself at the station in service corridor E0-S2 and charges overnight and between cleaning runs. Multiple groups: staff use the corridor; visitors occasionally pass the station.",
+        "peopleExposed": "MULTIPLE_GROUPS",
+        "reviewStatus": "HAZARDS_RECORDED",
+        "justification": null,
+        "systemElementIds": [
+          "0c13a998-0efb-4920-961a-a8d57044b648",
+          "a6ce0496-bd63-4a49-90f2-5e514ed8436a",
+          "2e5c03cd-b3d2-4b33-9cd3-31658c1d3897",
+          "6edec9bd-e91a-48b3-8dc5-fa7510064129",
+          "1c8aedca-eb3e-446c-b97b-fe1a8c97c7c3"
+        ],
+        "scenarios": [
+          {
+            "id": "72477f17-e1d7-48ff-bafd-676c94a9977c",
+            "reference": "HS-11",
+            "hazardCategory": "BATTERY_FIRE_EXPLOSION",
+            "eventHarm": "Thermal runaway of the battery pack while charging: fire and toxic smoke in the service corridor, spreading to the public corridor.",
+            "systemElementIds": [
+              "0c13a998-0efb-4920-961a-a8d57044b648",
+              "a6ce0496-bd63-4a49-90f2-5e514ed8436a",
+              "6edec9bd-e91a-48b3-8dc5-fa7510064129"
+            ],
+            "initial": {
+              "severity": "S3",
+              "exposure": "E1",
+              "avoidance": "A3",
+              "rationale": "NMC cells can enter thermal runaway; a fire develops too fast for people nearby to act."
+            },
+            "reduction": {
+              "primary": "SAFEGUARDING_SRP_CS",
+              "measuresDesignRationale": "BMS cell monitoring opens the pack contactor and stops charging on over-voltage or over-temperature (SF-07); certified pack; docking station in a separate fire compartment with a smoke detector linked to the building fire alarm."
+            },
+            "safetyFunctionElementIds": [
+              "a6ce0496-bd63-4a49-90f2-5e514ed8436a",
+              "1c8aedca-eb3e-446c-b97b-fe1a8c97c7c3"
+            ],
+            "functionalSafety": {
+              "srpCsUsed": true,
+              "selectedPlr": "PL_D",
+              "selectedCategory": "CAT_3",
+              "sfIdsRequirementBasis": "SF-07 Charge cut-off: BMS opens the pack contactor and the charger stops within 1 s of a cell above 4.25 V or 55 °C.",
+              "achievedPl": "PL_D",
+              "achievedCategory": "CAT_3",
+              "validation": "VALIDATED"
+            },
+            "implementation": {
+              "status": "IMPLEMENTED",
+              "assessmentVerification": "VERIFIED",
+              "physicalValidation": "PASSED",
+              "evidenceReferences": "VAL-S2-019 SF-07 validation (over-voltage and over-temperature injection); fire strategy note FS-04-E0S2.",
+              "newHazardsReview": "NONE_IDENTIFIED",
+              "newHazardScenarioIds": null,
+              "newHazardClosureBasis": "Measures reviewed in the hazard workshop; they introduce no new hazards."
+            },
+            "residual": {
+              "severity": "S2",
+              "exposure": "E1",
+              "avoidance": "A2",
+              "rationale": "Runaway is unlikely with SF-07; the compartment and early detection limit harm to smoke exposure during evacuation.",
+              "e0Basis": "NOT_APPLICABLE"
+            },
+            "review": {
+              "decision": "ACCEPT",
+              "reviewer": "J. Okafor",
+              "date": "2026-08-28"
+            },
+            "actionOwner": "Facilities (R. Haddad)",
+            "dueDate": "2026-12-01"
+          },
+          {
+            "id": "52cdc738-9c13-45c9-a2fb-ecba26bbb8da",
+            "reference": "HS-12",
+            "hazardCategory": "ELECTRICAL_SHOCK",
+            "eventHarm": "A child touches the docking station's charging plates while no robot is docked.",
+            "systemElementIds": [
+              "6edec9bd-e91a-48b3-8dc5-fa7510064129",
+              "2e5c03cd-b3d2-4b33-9cd3-31658c1d3897"
+            ],
+            "initial": {
+              "severity": "S2",
+              "exposure": "E1",
+              "avoidance": "A2",
+              "rationale": "The plates are at child height in a corridor visitors occasionally use."
+            },
+            "reduction": {
+              "primary": "ELIMINATION",
+              "measuresDesignRationale": "The plates are energised only after the docked robot's handshake; the charger output is SELV (below 60 V DC)."
+            },
+            "safetyFunctionElementIds": [
+              "1c8aedca-eb3e-446c-b97b-fe1a8c97c7c3",
+              "2e5c03cd-b3d2-4b33-9cd3-31658c1d3897"
+            ],
+            "functionalSafety": {
+              "srpCsUsed": false,
+              "selectedPlr": "NOT_APPLICABLE",
+              "selectedCategory": "NOT_APPLICABLE",
+              "sfIdsRequirementBasis": null,
+              "achievedPl": "NOT_APPLICABLE",
+              "achievedCategory": "NOT_APPLICABLE",
+              "validation": "NOT_APPLICABLE"
+            },
+            "implementation": {
+              "status": "IMPLEMENTED",
+              "assessmentVerification": "VERIFIED",
+              "physicalValidation": "PASSED",
+              "evidenceReferences": "Charger test certificate CH-30-0098; handshake test in TR-S2-040.",
+              "newHazardsReview": "NONE_IDENTIFIED",
+              "newHazardScenarioIds": null,
+              "newHazardClosureBasis": "Measures reviewed in the hazard workshop; they introduce no new hazards."
+            },
+            "residual": {
+              "severity": "S1",
+              "exposure": "E0",
+              "avoidance": "A1",
+              "rationale": "Undocked plates carry no voltage.",
+              "e0Basis": "INHERENTLY_SAFE_DESIGN"
+            },
+            "review": {
+              "decision": "ACCEPT",
+              "reviewer": "J. Okafor",
+              "date": "2026-08-28"
+            },
+            "actionOwner": "M. Lindqvist (Ply)",
+            "dueDate": "2026-12-01"
+          },
+          {
+            "id": "d0c8cc8d-5c95-4ca2-8fd8-81e5681e7740",
+            "reference": "HS-13",
+            "hazardCategory": "CRUSHING_TRAPPING",
+            "eventHarm": "A person's foot or leg is trapped between the robot and the wall while it reverses onto the dock.",
+            "systemElementIds": [
+              "ba20ac8a-c792-4747-aacd-d904bebe09a9",
+              "6edec9bd-e91a-48b3-8dc5-fa7510064129"
+            ],
+            "initial": {
+              "severity": "S2",
+              "exposure": "E1",
+              "avoidance": "A2",
+              "rationale": "Docking reverses into a corner of the service corridor; staff pass occasionally."
+            },
+            "reduction": {
+              "primary": "SAFEGUARDING_SRP_CS",
+              "measuresDesignRationale": "Docking at 0.2 m/s; rear bumper contact stop (SF-02); ultrasonic sensors stop the approach when someone is behind the robot."
+            },
+            "safetyFunctionElementIds": [
+              "1ef7f9c1-30e6-4e56-bb1a-85f33728d734",
+              "b713dff8-22db-4ed5-8c6a-9252ff98001b",
+              "e4979b1c-95fa-433b-ab45-06321369b23d"
+            ],
+            "functionalSafety": {
+              "srpCsUsed": true,
+              "selectedPlr": "PL_D",
+              "selectedCategory": "CAT_2",
+              "sfIdsRequirementBasis": "SF-02 Bumper contact stop on the rear bumper section during docking.",
+              "achievedPl": "PL_D",
+              "achievedCategory": "CAT_2",
+              "validation": "PENDING"
+            },
+            "implementation": {
+              "status": "IMPLEMENTED",
+              "assessmentVerification": "VERIFIED",
+              "physicalValidation": "PENDING",
+              "evidenceReferences": "TR-S2-040 docking trials; rear bumper re-test scheduled after the bumper bracket change.",
+              "newHazardsReview": "NONE_IDENTIFIED",
+              "newHazardScenarioIds": null,
+              "newHazardClosureBasis": "Measures reviewed in the hazard workshop; they introduce no new hazards."
+            },
+            "residual": {
+              "severity": "S1",
+              "exposure": "E1",
+              "avoidance": "A2",
+              "rationale": "Low speed and the bumper stop limit harm to a minor bruise.",
+              "e0Basis": "NOT_APPLICABLE"
+            },
+            "review": {
+              "decision": "PENDING",
+              "reviewer": "J. Okafor",
+              "date": null
+            },
+            "actionOwner": "M. Lindqvist (Ply)",
+            "dueDate": "2026-10-30"
+          }
+        ]
+      },
+      {
+        "id": "1df468e1-0f6b-42ae-8349-02371705afbe",
+        "reference": "T05",
+        "category": "BLOCKAGE_FAULT_RECOVERY",
+        "mode": "STOPPED_ENERGIZED",
+        "areaTaskDetails": "The on-site operator responds to a robot stopped by a fault, a bumper contact or a blocked brush: presses the e-stop, clears the obstruction, pushes the robot clear with the brakes released and restarts it from the touchscreen.",
+        "peopleExposed": "OPERATOR",
+        "reviewStatus": "HAZARDS_RECORDED",
+        "justification": null,
+        "systemElementIds": [
+          "bc1f356e-1ad1-4e44-9a0c-4cf632757dc1",
+          "0cf0fe75-553c-46df-94a7-f92af3ad8052",
+          "6d98fef2-57f0-4aea-b5f7-340563167a92",
+          "a389ef3b-1b2e-4a96-9ccc-ea9f9296225f",
+          "ca7ee1b0-3e49-4da0-b614-1060c86d6c2f"
+        ],
+        "scenarios": [
+          {
+            "id": "603575f8-ddbd-4919-9642-9df83fb44589",
+            "reference": "HS-14",
+            "hazardCategory": "UNEXPECTED_MOTION_RESTART",
+            "eventHarm": "The robot or its brushes restart while the operator is clearing a blocked brush or pushing the robot: hand or foot injury.",
+            "systemElementIds": [
+              "ba20ac8a-c792-4747-aacd-d904bebe09a9",
+              "a389ef3b-1b2e-4a96-9ccc-ea9f9296225f",
+              "0cf0fe75-553c-46df-94a7-f92af3ad8052"
+            ],
+            "initial": {
+              "severity": "S2",
+              "exposure": "E2",
+              "avoidance": "A3",
+              "rationale": "Fault recovery happens most days; the operator's hands are at the brushes and cannot be withdrawn in time."
+            },
+            "reduction": {
+              "primary": "SAFEGUARDING_SRP_CS",
+              "measuresDesignRationale": "E-stop removes drive and brush power through the safety relay; brakes engage; restart needs a monitored reset on the touchscreen after the e-stop is released."
+            },
+            "safetyFunctionElementIds": [
+              "bc1f356e-1ad1-4e44-9a0c-4cf632757dc1",
+              "0cf0fe75-553c-46df-94a7-f92af3ad8052",
+              "e4979b1c-95fa-433b-ab45-06321369b23d"
+            ],
+            "functionalSafety": {
+              "srpCsUsed": true,
+              "selectedPlr": "PL_D",
+              "selectedCategory": "CAT_3",
+              "sfIdsRequirementBasis": "SF-06 Emergency stop: stop category 0, dual-channel safety relay, monitored manual reset.",
+              "achievedPl": "PL_D",
+              "achievedCategory": "CAT_3",
+              "validation": "VALIDATED"
+            },
+            "implementation": {
+              "status": "IMPLEMENTED",
+              "assessmentVerification": "VERIFIED",
+              "physicalValidation": "PASSED",
+              "evidenceReferences": "VAL-S2-017 e-stop and reset validation; operator procedure S2-SOP-04.",
+              "newHazardsReview": "IDENTIFIED_CLOSED",
+              "newHazardScenarioIds": [
+                "06e451ac-ccd4-4808-baa7-8560c63ff3d5"
+              ],
+              "newHazardClosureBasis": "With the brakes engaged after a stop the operator has to push the robot: manual handling assessed in HS-15 and closed."
+            },
+            "residual": {
+              "severity": "S2",
+              "exposure": "E0",
+              "avoidance": "A3",
+              "rationale": "Exposure to unexpected motion is prevented by the validated e-stop and monitored reset.",
+              "e0Basis": "VALIDATED_SAFETY_FUNCTION"
+            },
+            "review": {
+              "decision": "ACCEPT",
+              "reviewer": "J. Okafor",
+              "date": "2026-08-28"
+            },
+            "actionOwner": "M. Lindqvist (Ply)",
+            "dueDate": "2026-12-01"
+          },
+          {
+            "id": "06e451ac-ccd4-4808-baa7-8560c63ff3d5",
+            "reference": "HS-15",
+            "hazardCategory": "ERGONOMIC_MANUAL_HANDLING",
+            "eventHarm": "The operator strains their back pushing the 180 kg robot with the brakes engaged.",
+            "systemElementIds": [
+              "6d98fef2-57f0-4aea-b5f7-340563167a92",
+              "7b67672b-4046-4005-98f9-941b5ca4f7f6"
+            ],
+            "initial": {
+              "severity": "S1",
+              "exposure": "E2",
+              "avoidance": "A2",
+              "rationale": "Pushing is needed after most stops in awkward places."
+            },
+            "reduction": {
+              "primary": "COMPLEMENTARY_MEASURES",
+              "measuresDesignRationale": "Manual brake release lever and free-wheel mode; push handle at the rear; the procedure limits pushing to level floors."
+            },
+            "safetyFunctionElementIds": [
+              "6d98fef2-57f0-4aea-b5f7-340563167a92"
+            ],
+            "functionalSafety": {
+              "srpCsUsed": false,
+              "selectedPlr": "NOT_APPLICABLE",
+              "selectedCategory": "NOT_APPLICABLE",
+              "sfIdsRequirementBasis": null,
+              "achievedPl": "NOT_APPLICABLE",
+              "achievedCategory": "NOT_APPLICABLE",
+              "validation": "NOT_APPLICABLE"
+            },
+            "implementation": {
+              "status": "IMPLEMENTED",
+              "assessmentVerification": "VERIFIED",
+              "physicalValidation": "PASSED",
+              "evidenceReferences": "Push force measurement PF-S2-02 (180 N to start, 60 N rolling); S2-SOP-04.",
+              "newHazardsReview": "NONE_IDENTIFIED",
+              "newHazardScenarioIds": null,
+              "newHazardClosureBasis": "Measures reviewed in the hazard workshop; they introduce no new hazards."
+            },
+            "residual": {
+              "severity": "S1",
+              "exposure": "E1",
+              "avoidance": "A1",
+              "rationale": "Push forces are within guidance with the brakes released.",
+              "e0Basis": "NOT_APPLICABLE"
+            },
+            "review": {
+              "decision": "ACCEPT",
+              "reviewer": "J. Okafor",
+              "date": "2026-08-28"
+            },
+            "actionOwner": "Facilities (R. Haddad)",
+            "dueDate": "2026-12-01"
+          }
+        ]
+      },
+      {
+        "id": "69e40ca0-6152-4e9d-a2a4-2a0a0c9438d4",
+        "reference": "T06",
+        "category": "MAINTENANCE_REPAIR",
+        "mode": "ISOLATED_LOCKED_OUT",
+        "areaTaskDetails": "Weekly brush and squeegee blade change and filter cleaning, and the quarterly battery inspection, by the Ply service technician in the facilities workshop, with the robot switched off and the battery service plug removed.",
+        "peopleExposed": "MAINTENANCE_TECHNICIAN",
+        "reviewStatus": "HAZARDS_RECORDED",
+        "justification": null,
+        "systemElementIds": [
+          "a389ef3b-1b2e-4a96-9ccc-ea9f9296225f",
+          "0b844cd0-91c1-4311-9da0-3ef8a4f5006d",
+          "0c13a998-0efb-4920-961a-a8d57044b648"
+        ],
+        "scenarios": [
+          {
+            "id": "575ea01f-1a82-433d-b1b7-e44adbc74dd6",
+            "reference": "HS-16",
+            "hazardCategory": "BATTERY_FIRE_EXPLOSION",
+            "eventHarm": "A short circuit while the technician disconnects or inspects the battery pack causes an arc flash or a battery fire: burns.",
+            "systemElementIds": [
+              "0c13a998-0efb-4920-961a-a8d57044b648"
+            ],
+            "initial": {
+              "severity": "S3",
+              "exposure": "E1",
+              "avoidance": "A2",
+              "rationale": "A short on a 150 Ah pack releases high energy; battery work is quarterly."
+            },
+            "reduction": {
+              "primary": "ADMINISTRATIVE_CONTROLS",
+              "measuresDesignRationale": "The BMS opens the pack contactor in service mode so the terminals are dead; insulated tools; service plug removed before work; procedure S2-SOP-07."
+            },
+            "safetyFunctionElementIds": [
+              "a6ce0496-bd63-4a49-90f2-5e514ed8436a"
+            ],
+            "functionalSafety": {
+              "srpCsUsed": false,
+              "selectedPlr": "NOT_APPLICABLE",
+              "selectedCategory": "NOT_APPLICABLE",
+              "sfIdsRequirementBasis": null,
+              "achievedPl": "NOT_APPLICABLE",
+              "achievedCategory": "NOT_APPLICABLE",
+              "validation": "NOT_APPLICABLE"
+            },
+            "implementation": {
+              "status": "IMPLEMENTED",
+              "assessmentVerification": "VERIFIED",
+              "physicalValidation": "PASSED",
+              "evidenceReferences": "S2-SOP-07 battery service procedure; technician training record TR-SVC-118.",
+              "newHazardsReview": "NONE_IDENTIFIED",
+              "newHazardScenarioIds": null,
+              "newHazardClosureBasis": "Measures reviewed in the hazard workshop; they introduce no new hazards."
+            },
+            "residual": {
+              "severity": "S2",
+              "exposure": "E1",
+              "avoidance": "A1",
+              "rationale": "With the contactor open and insulated tools, a short is unlikely and limited.",
+              "e0Basis": "NOT_APPLICABLE"
+            },
+            "review": {
+              "decision": "ACCEPT",
+              "reviewer": "J. Okafor",
+              "date": "2026-08-28"
+            },
+            "actionOwner": "M. Lindqvist (Ply)",
+            "dueDate": "2026-12-01"
+          },
+          {
+            "id": "777418a7-8c4b-4bab-bf45-eec639515622",
+            "reference": "HS-17",
+            "hazardCategory": "SHEARING_CUTTING",
+            "eventHarm": "The technician cuts a hand on a worn squeegee blade or brush clamp while changing them.",
+            "systemElementIds": [
+              "a389ef3b-1b2e-4a96-9ccc-ea9f9296225f",
+              "0b844cd0-91c1-4311-9da0-3ef8a4f5006d"
+            ],
+            "initial": {
+              "severity": "S1",
+              "exposure": "E2",
+              "avoidance": "A1",
+              "rationale": "Weekly change; minor cuts only."
+            },
+            "reduction": {
+              "primary": "PPE",
+              "measuresDesignRationale": "Cut-resistant gloves; tool-free blade and brush changes."
+            },
+            "safetyFunctionElementIds": null,
+            "functionalSafety": {
+              "srpCsUsed": false,
+              "selectedPlr": "NOT_APPLICABLE",
+              "selectedCategory": "NOT_APPLICABLE",
+              "sfIdsRequirementBasis": null,
+              "achievedPl": "NOT_APPLICABLE",
+              "achievedCategory": "NOT_APPLICABLE",
+              "validation": "NOT_APPLICABLE"
+            },
+            "implementation": {
+              "status": "IMPLEMENTED",
+              "assessmentVerification": "VERIFIED",
+              "physicalValidation": "PASSED",
+              "evidenceReferences": "S2-SOP-06 consumables change procedure.",
+              "newHazardsReview": "NONE_IDENTIFIED",
+              "newHazardScenarioIds": null,
+              "newHazardClosureBasis": "Measures reviewed in the hazard workshop; they introduce no new hazards."
+            },
+            "residual": {
+              "severity": "S1",
+              "exposure": "E1",
+              "avoidance": "A1",
+              "rationale": "Gloves and tool-free changes leave negligible risk.",
+              "e0Basis": "NOT_APPLICABLE"
+            },
+            "review": {
+              "decision": "ACCEPT",
+              "reviewer": "J. Okafor",
+              "date": "2026-08-28"
+            },
+            "actionOwner": "M. Lindqvist (Ply)",
+            "dueDate": "2026-12-01"
+          }
+        ]
+      },
+      {
+        "id": "8ed56a05-ec1e-44aa-baa1-2f2f00492b32",
+        "reference": "T07",
+        "category": "TELEOPERATION",
+        "mode": "TELEOPERATED",
+        "areaTaskDetails": "A remote operator in the Ply operations centre drives the robot with the live front-camera video when it cannot plan a path, e.g. in a crowded atrium or around a temporary obstruction. People nearby cannot tell it is remotely driven. Multiple groups: visitors, patients (some with walking aids or in wheelchairs), children and hospital staff.",
+        "peopleExposed": "MULTIPLE_GROUPS",
+        "reviewStatus": "HAZARDS_RECORDED",
+        "justification": null,
+        "systemElementIds": [
+          "bbcf188b-8f12-491b-9e7d-5db4b8660d9d",
+          "81074fa6-4b8a-4f64-a7d7-c8a7c11c9f5c",
+          "0f4d4f47-95d2-4d75-92c8-53265a9698e9",
+          "ba20ac8a-c792-4747-aacd-d904bebe09a9",
+          "80657680-0c44-455d-b593-37e7ce9a0363"
+        ],
+        "scenarios": [
+          {
+            "id": "9bf90955-a012-48c1-a171-088c7dd51a3d",
+            "reference": "HS-18",
+            "hazardCategory": "COLLISION_IMPACT",
+            "eventHarm": "The remote operator does not see a person beside or behind the robot in the camera view and drives into them.",
+            "systemElementIds": [
+              "bbcf188b-8f12-491b-9e7d-5db4b8660d9d",
+              "0f4d4f47-95d2-4d75-92c8-53265a9698e9",
+              "ba20ac8a-c792-4747-aacd-d904bebe09a9"
+            ],
+            "initial": {
+              "severity": "S2",
+              "exposure": "E2",
+              "avoidance": "A2",
+              "rationale": "Teleoperation is used in crowded spots; the camera view is narrow and the video can lag."
+            },
+            "reduction": {
+              "primary": "SAFEGUARDING_SRP_CS",
+              "measuresDesignRationale": "Teleoperation speed capped at 0.5 m/s; safety LiDAR fields stay active (SF-01); the live front-camera video shows a person-detection overlay; the robot stops if the video lags more than 300 ms."
+            },
+            "safetyFunctionElementIds": [
+              "bbcf188b-8f12-491b-9e7d-5db4b8660d9d",
+              "bdfca204-6f70-435e-9315-b1d4d30e1f7c",
+              "e4979b1c-95fa-433b-ab45-06321369b23d",
+              "0f4d4f47-95d2-4d75-92c8-53265a9698e9"
+            ],
+            "functionalSafety": {
+              "srpCsUsed": true,
+              "selectedPlr": "PL_D",
+              "selectedCategory": "CAT_3",
+              "sfIdsRequirementBasis": "SF-01 Protective stop on LiDAR protective field, active in teleoperation; SF-08 Speed limit 0.5 m/s in teleoperation.",
+              "achievedPl": "PL_D",
+              "achievedCategory": "CAT_3",
+              "validation": "VALIDATED"
+            },
+            "implementation": {
+              "status": "IMPLEMENTED",
+              "assessmentVerification": "VERIFIED",
+              "physicalValidation": "PASSED",
+              "evidenceReferences": "VAL-S2-018 teleoperation trial (40 runs in the atrium); video latency watchdog test TR-S2-044.",
+              "newHazardsReview": "IDENTIFIED_CLOSED",
+              "newHazardScenarioIds": [
+                "8243a927-8386-45d9-a41c-5f47dfccc584"
+              ],
+              "newHazardClosureBasis": "Video-lag stops leave the robot standing in the corridor: covered by HS-03."
+            },
+            "residual": {
+              "severity": "S2",
+              "exposure": "E1",
+              "avoidance": "A2",
+              "rationale": "Protective stops still work; the remaining risk is a low-speed contact outside the LiDAR field.",
+              "e0Basis": "NOT_APPLICABLE"
+            },
+            "review": {
+              "decision": "ACCEPT",
+              "reviewer": "J. Okafor",
+              "date": "2026-08-28"
+            },
+            "actionOwner": "Ply remote operations (S. Varga)",
+            "dueDate": "2026-12-01"
+          },
+          {
+            "id": "bd443736-4255-4dde-bac7-4cc0ad8cccab",
+            "reference": "HS-19",
+            "hazardCategory": "UNEXPECTED_MOTION_RESTART",
+            "eventHarm": "The wireless link drops during teleoperation and the robot keeps moving on its last command.",
+            "systemElementIds": [
+              "0f4d4f47-95d2-4d75-92c8-53265a9698e9",
+              "81074fa6-4b8a-4f64-a7d7-c8a7c11c9f5c"
+            ],
+            "initial": {
+              "severity": "S2",
+              "exposure": "E1",
+              "avoidance": "A3",
+              "rationale": "Hospital Wi-Fi has known dead spots in the atrium; nobody nearby expects the robot to keep moving."
+            },
+            "reduction": {
+              "primary": "SAFEGUARDING_SRP_CS",
+              "measuresDesignRationale": "Heartbeat watchdog: the safety PLC brings the robot to a controlled stop within 500 ms of a lost link (SF-09)."
+            },
+            "safetyFunctionElementIds": [
+              "0f4d4f47-95d2-4d75-92c8-53265a9698e9",
+              "e4979b1c-95fa-433b-ab45-06321369b23d"
+            ],
+            "functionalSafety": {
+              "srpCsUsed": true,
+              "selectedPlr": "PL_D",
+              "selectedCategory": "CAT_2",
+              "sfIdsRequirementBasis": "SF-09 Link-loss stop: controlled stop within 500 ms of a missed heartbeat.",
+              "achievedPl": "PL_D",
+              "achievedCategory": "CAT_2",
+              "validation": "PENDING"
+            },
+            "implementation": {
+              "status": "IMPLEMENTED",
+              "assessmentVerification": "VERIFIED",
+              "physicalValidation": "PENDING",
+              "evidenceReferences": "Bench test TR-S2-045; on-site test in the atrium dead spots scheduled.",
+              "newHazardsReview": "NONE_IDENTIFIED",
+              "newHazardScenarioIds": null,
+              "newHazardClosureBasis": "Measures reviewed in the hazard workshop; they introduce no new hazards."
+            },
+            "residual": {
+              "severity": "S1",
+              "exposure": "E1",
+              "avoidance": "A2",
+              "rationale": "Once validated on site, a link loss ends in a stop within 0.25 m.",
+              "e0Basis": "NOT_APPLICABLE"
+            },
+            "review": {
+              "decision": "PENDING",
+              "reviewer": "J. Okafor",
+              "date": null
+            },
+            "actionOwner": "Ply remote operations (S. Varga)",
+            "dueDate": "2026-11-06"
+          }
+        ]
+      },
+      {
+        "id": "2793a659-26ed-4f14-989a-a3ad2fa9278d",
+        "reference": "T08",
+        "category": "FIXTURE_CLEANING",
+        "mode": "OTHER",
+        "areaTaskDetails": "Handrails, door push plates and lift call buttons along the corridor and in the atrium. Mode Other: cleaned by hand by the contractor cleaning team; no robot mode applies.",
+        "peopleExposed": "CONTRACTOR_CLEANER",
+        "reviewStatus": "OUT_OF_SCOPE_JUSTIFIED",
+        "justification": "The S2 has no arm or tool for vertical surfaces, so it cannot clean fixtures. Fixture cleaning stays a manual task under the cleaning contractor's own risk assessment (CC-RA-22) until a manipulator is added.",
+        "systemElementIds": null,
+        "scenarios": []
+      },
+      {
+        "id": "696eef19-67d6-40cb-9866-949554f78922",
+        "reference": "T09",
+        "category": "MAPPING_SETUP",
+        "mode": "MANUAL_SETUP",
+        "areaTaskDetails": "The Ply application engineer drives the robot with the hold-to-run joystick to map the route and sets no-go zones (stairs, mezzanine edge, fire doors), before the trial and after layout changes. Done at night with the area partly cordoned off.",
+        "peopleExposed": "MAINTENANCE_TECHNICIAN",
+        "reviewStatus": "HAZARDS_RECORDED",
+        "justification": null,
+        "systemElementIds": [
+          "bdfca204-6f70-435e-9315-b1d4d30e1f7c",
+          "4a9787e6-5a7b-4761-ab4f-59eeeaedede4",
+          "81074fa6-4b8a-4f64-a7d7-c8a7c11c9f5c",
+          "ba20ac8a-c792-4747-aacd-d904bebe09a9",
+          "ca7ee1b0-3e49-4da0-b614-1060c86d6c2f"
+        ],
+        "scenarios": [
+          {
+            "id": "55bd05d7-d340-4a8d-b64c-b84fee4f79f4",
+            "reference": "HS-20",
+            "hazardCategory": "CRUSHING_TRAPPING",
+            "eventHarm": "The engineer's foot is run over while driving the robot by joystick during mapping.",
+            "systemElementIds": [
+              "ba20ac8a-c792-4747-aacd-d904bebe09a9",
+              "7b67672b-4046-4005-98f9-941b5ca4f7f6",
+              "ca7ee1b0-3e49-4da0-b614-1060c86d6c2f"
+            ],
+            "initial": {
+              "severity": "S2",
+              "exposure": "E1",
+              "avoidance": "A1",
+              "rationale": "Mapping is occasional; the engineer walks beside the robot and controls it."
+            },
+            "reduction": {
+              "primary": "SAFEGUARDING_SRP_CS",
+              "measuresDesignRationale": "Hold-to-run joystick limited to 0.3 m/s in setup mode; safety LiDAR fields stay active; safety shoes."
+            },
+            "safetyFunctionElementIds": [
+              "bdfca204-6f70-435e-9315-b1d4d30e1f7c",
+              "e4979b1c-95fa-433b-ab45-06321369b23d"
+            ],
+            "functionalSafety": {
+              "srpCsUsed": true,
+              "selectedPlr": "PL_D",
+              "selectedCategory": "CAT_2",
+              "sfIdsRequirementBasis": "SF-10 Setup-mode speed limit 0.3 m/s with hold-to-run; SF-01 stays active.",
+              "achievedPl": "PL_D",
+              "achievedCategory": "CAT_2",
+              "validation": "VALIDATED"
+            },
+            "implementation": {
+              "status": "IMPLEMENTED",
+              "assessmentVerification": "VERIFIED",
+              "physicalValidation": "PASSED",
+              "evidenceReferences": "VAL-S2-020 setup-mode validation.",
+              "newHazardsReview": "NONE_IDENTIFIED",
+              "newHazardScenarioIds": null,
+              "newHazardClosureBasis": "Measures reviewed in the hazard workshop; they introduce no new hazards."
+            },
+            "residual": {
+              "severity": "S1",
+              "exposure": "E1",
+              "avoidance": "A1",
+              "rationale": "Slow, hold-to-run motion and safety shoes leave negligible risk.",
+              "e0Basis": "NOT_APPLICABLE"
+            },
+            "review": {
+              "decision": "ACCEPT",
+              "reviewer": "J. Okafor",
+              "date": "2026-08-28"
+            },
+            "actionOwner": "M. Lindqvist (Ply)",
+            "dueDate": "2026-12-01"
+          }
+        ]
+      },
+      {
+        "id": "e9ee2a70-1ac0-4445-84d0-5a09549a9f6e",
+        "reference": "T10",
+        "category": "INSPECTION",
+        "mode": "STOPPED_ENERGIZED",
+        "areaTaskDetails": "Daily pre-use check by the operator: wipe the camera and LiDAR windows, test the bumper and both e-stops, check the warning light and brush wear.",
+        "peopleExposed": "OPERATOR",
+        "reviewStatus": "NO_HAZARDS_JUSTIFIED",
+        "justification": "Done with the robot stopped. The bumper and e-stop tests can only stop the robot, and cleaning the sensor windows needs no tools. No hazards beyond those assessed for fault recovery (T05).",
+        "systemElementIds": [
+          "bbcf188b-8f12-491b-9e7d-5db4b8660d9d",
+          "bdfca204-6f70-435e-9315-b1d4d30e1f7c",
+          "b713dff8-22db-4ed5-8c6a-9252ff98001b",
+          "bc1f356e-1ad1-4e44-9a0c-4cf632757dc1",
+          "ffbb84de-d759-47d1-b39e-56d1f579a339"
+        ],
+        "scenarios": []
+      }
+    ],
+    "system": {
+      "id": "70b32731-e20c-478e-91f3-fcfbd21972bb",
+      "kind": "SYSTEM",
+      "reference": "SYS",
+      "name": "Ply Scrub S2",
+      "description": "Autonomous floor-scrubbing robot for hospital public areas: 180 kg, 60 cm cleaning width, 0.8 m/s maximum autonomous speed. Units S2-0417 and S2-0418 on the east corridor and atrium route. Subsystems have three-letter references (PER, DRV, CLN …); their parts are numbered under them (PER-01, CLN-03.1).",
+      "children": [
+        {
+          "id": "bbdfcc6b-fcca-4afb-9e59-df394c1e5577",
+          "kind": "SUBSYSTEM",
+          "reference": "PER",
+          "name": "Perception",
+          "description": "Sensors for localisation, obstacle and person detection, and protective stops.",
+          "children": [
+            {
+              "id": "bbcf188b-8f12-491b-9e7d-5db4b8660d9d",
+              "kind": "COMPONENT",
+              "reference": "PER-01",
+              "name": "Front RGB camera",
+              "description": "Forward-facing 1080p RGB camera, 120° field of view, mounted at 1.1 m. Not safety-rated: used for navigation assistance (person detection for early slowdown) and the teleoperation video. Connected only to the main computer, not to the safety PLC (whose inputs are the safety LiDAR, bumper, cliff sensors and e-stops).",
+              "children": []
+            },
+            {
+              "id": "bdfca204-6f70-435e-9315-b1d4d30e1f7c",
+              "kind": "COMPONENT",
+              "reference": "PER-02",
+              "name": "2D safety LiDAR",
+              "description": "Safety-rated 2D laser scanner (type 3, PL d) at 18 cm height with a 275° field. Speed-dependent protective and warning fields, evaluated by the safety PLC.",
+              "children": []
+            },
+            {
+              "id": "1ef7f9c1-30e6-4e56-bb1a-85f33728d734",
+              "kind": "COMPONENT",
+              "reference": "PER-03",
+              "name": "Ultrasonic sensor array",
+              "description": "Eight ultrasonic sensors around the base for low and glass obstacles that the LiDAR plane misses. Not safety-rated: the main computer slows the robot on them. Connected only to the main computer, not to the safety PLC (whose inputs are the safety LiDAR, bumper, cliff sensors and e-stops).",
+              "children": []
+            },
+            {
+              "id": "b713dff8-22db-4ed5-8c6a-9252ff98001b",
+              "kind": "COMPONENT",
+              "reference": "PER-04",
+              "name": "Bumper switch",
+              "description": "Full-perimeter pressure-sensitive bumper, dual-channel to the safety PLC. Contact triggers safe torque off and the brakes.",
+              "children": []
+            },
+            {
+              "id": "4a9787e6-5a7b-4761-ab4f-59eeeaedede4",
+              "kind": "COMPONENT",
+              "reference": "PER-05",
+              "name": "Cliff sensors",
+              "description": "Four downward time-of-flight sensors at the corners detect drops over 3 cm (stairs, mezzanine edge, open floor hatches). Dual-channel to the safety PLC.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "6e978a1a-0ddc-492f-a538-a952ed29e7c3",
+          "kind": "SUBSYSTEM",
+          "reference": "DRV",
+          "name": "Drive",
+          "description": "Differential drive with two powered wheels, rear castors and spring-applied brakes.",
+          "children": [
+            {
+              "id": "ba20ac8a-c792-4747-aacd-d904bebe09a9",
+              "kind": "COMPONENT",
+              "reference": "DRV-01",
+              "name": "Drive motors",
+              "description": "Two 24 V brushless hub motors with dual encoders. Speed monitored by the safety PLC; safe torque off (STO) on both drives.",
+              "children": []
+            },
+            {
+              "id": "6d98fef2-57f0-4aea-b5f7-340563167a92",
+              "kind": "COMPONENT",
+              "reference": "DRV-02",
+              "name": "Electromagnetic brakes",
+              "description": "Spring-applied, power-off brakes on both drive wheels, with a manual release lever for pushing the robot when it is switched off.",
+              "children": []
+            },
+            {
+              "id": "7b67672b-4046-4005-98f9-941b5ca4f7f6",
+              "kind": "COMPONENT",
+              "reference": "DRV-03",
+              "name": "Wheels and castors",
+              "description": "Two 250 mm non-marking drive wheels and two swivel castors.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "a80ab40b-4bfe-4377-aecd-d1780da99df5",
+          "kind": "SUBSYSTEM",
+          "reference": "CLN",
+          "name": "Cleaning",
+          "description": "Scrubbing deck, water recovery and solution dosing.",
+          "children": [
+            {
+              "id": "a389ef3b-1b2e-4a96-9ccc-ea9f9296225f",
+              "kind": "COMPONENT",
+              "reference": "CLN-01",
+              "name": "Brush deck",
+              "description": "Two counter-rotating 33 cm disc brushes at 200 rpm under a rubber splash skirt. Brush motors stop with the drive and when the deck is lifted.",
+              "children": []
+            },
+            {
+              "id": "0b844cd0-91c1-4311-9da0-3ef8a4f5006d",
+              "kind": "COMPONENT",
+              "reference": "CLN-02",
+              "name": "Squeegee and vacuum",
+              "description": "Rear curved squeegee with a vacuum motor recovering dirty water into the 40 L recovery tank.",
+              "children": []
+            },
+            {
+              "id": "7f0252dd-8c2a-4856-9bb0-9d4e608c9a59",
+              "kind": "SUBSYSTEM",
+              "reference": "CLN-03",
+              "name": "Solution system",
+              "description": "Stores and doses the cleaning solution.",
+              "children": [
+                {
+                  "id": "0ca9ff30-6e23-4dfc-8e31-d9b3ae267458",
+                  "kind": "COMPONENT",
+                  "reference": "CLN-03.1",
+                  "name": "Solution tank",
+                  "description": "40 L solution tank with a waist-height fill port and a closed-loop coupling for pre-diluted detergent cartridges.",
+                  "children": []
+                },
+                {
+                  "id": "03c73a8a-54a0-4566-a130-b730a0e6d71f",
+                  "kind": "COMPONENT",
+                  "reference": "CLN-03.2",
+                  "name": "Chemical dosing pump",
+                  "description": "Peristaltic pump dosing detergent at 0.5–2 % into the brush deck feed; maximum flow limited in software.",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "60b72c7f-2dac-457c-bf09-82d13616f72f",
+          "kind": "SUBSYSTEM",
+          "reference": "PWR",
+          "name": "Power",
+          "description": "Battery, battery management and charging interface.",
+          "children": [
+            {
+              "id": "0c13a998-0efb-4920-961a-a8d57044b648",
+              "kind": "COMPONENT",
+              "reference": "PWR-01",
+              "name": "Li-ion battery pack",
+              "description": "25.2 V, 150 Ah lithium-ion pack with NMC cells in a vented steel enclosure; UN 38.3 and IEC 62133-2 certified. Removed by a technician with a service plug. A change of cell chemistry is made in this pack (same enclosure, connector and mounting) and changes the BMS charge and thermal limits.",
+              "children": []
+            },
+            {
+              "id": "a6ce0496-bd63-4a49-90f2-5e514ed8436a",
+              "kind": "COMPONENT",
+              "reference": "PWR-02",
+              "name": "Battery management system",
+              "description": "Monitors cell voltages and temperatures, balances the cells and opens the pack contactor on over-voltage, over-current or over-temperature (SF-07). Configured for the pack's NMC chemistry: CC-CV to 4.2 V per cell, 55 °C cut-off. Opens the contactor in service mode.",
+              "children": []
+            },
+            {
+              "id": "2e5c03cd-b3d2-4b33-9cd3-31658c1d3897",
+              "kind": "COMPONENT",
+              "reference": "PWR-03",
+              "name": "Charger contacts",
+              "description": "Two spring-loaded contacts under the rear bumper that mate with the docking station's charging plates.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "0e2abb9c-5e11-4ff2-bbac-9da333b76a8a",
+          "kind": "SUBSYSTEM",
+          "reference": "CTL",
+          "name": "Compute and safety",
+          "description": "Navigation computer, safety controller, emergency stop circuit and remote link.",
+          "children": [
+            {
+              "id": "81074fa6-4b8a-4f64-a7d7-c8a7c11c9f5c",
+              "kind": "COMPONENT",
+              "reference": "CTL-01",
+              "name": "Main computer",
+              "description": "Navigation and cleaning computer: localisation, path planning, person detection and fleet connection. Not safety-rated. Software 4.2.1.",
+              "children": []
+            },
+            {
+              "id": "e4979b1c-95fa-433b-ab45-06321369b23d",
+              "kind": "COMPONENT",
+              "reference": "CTL-02",
+              "name": "Safety PLC",
+              "description": "Dual-channel safety controller that runs every safety function of the robot. Its safety-rated inputs are the safety LiDAR, bumper, cliff sensors and e-stops; it monitors speed and commands the protective stops (STO and brakes) of every actuator: the drive and the brushes. Firmware 2.3.0. Any new actuator (motor, arm or tool) must be added to its safety program and the program validated again; a sensor only when it becomes one of the safety-rated inputs listed here.",
+              "children": []
+            },
+            {
+              "id": "1a6d0c9a-defc-4f83-b51f-8c32242e5053",
+              "kind": "SUBSYSTEM",
+              "reference": "CTL-03",
+              "name": "Emergency stop circuit",
+              "description": "Stop category 0 emergency stop: the e-stop buttons (CTL-03.1) and the safety relay (CTL-03.2) that cuts power to every motor.",
+              "children": [
+                {
+                  "id": "bc1f356e-1ad1-4e44-9a0c-4cf632757dc1",
+                  "kind": "COMPONENT",
+                  "reference": "CTL-03.1",
+                  "name": "E-stop buttons",
+                  "description": "Two red mushroom-head buttons, front and rear, at 0.9 m height.",
+                  "children": []
+                },
+                {
+                  "id": "0cf0fe75-553c-46df-94a7-f92af3ad8052",
+                  "kind": "COMPONENT",
+                  "reference": "CTL-03.2",
+                  "name": "Safety relay",
+                  "description": "Dual-channel safety relay with monitored reset in the e-stop chain; cuts power to every motor (drive and brushes). Any new motor or actuator must be wired into the e-stop chain.",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "id": "0f4d4f47-95d2-4d75-92c8-53265a9698e9",
+              "kind": "COMPONENT",
+              "reference": "CTL-04",
+              "name": "Wireless link",
+              "description": "LTE and hospital Wi-Fi link to the remote operations centre, with a heartbeat watchdog for teleoperation. Carries the teleoperation video stream whatever camera or sensor feeds it, so a change of camera or sensor does not change the link.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "3359eab5-bbc7-4ac4-8f1a-9493c8c2b248",
+          "kind": "SUBSYSTEM",
+          "reference": "HMI",
+          "name": "HMI",
+          "description": "Interfaces for staff and the public.",
+          "children": [
+            {
+              "id": "ca7ee1b0-3e49-4da0-b614-1060c86d6c2f",
+              "kind": "COMPONENT",
+              "reference": "HMI-01",
+              "name": "Touchscreen",
+              "description": "10-inch touchscreen at the rear for starting routes, resetting stops and status. Setup functions are PIN-protected.",
+              "children": []
+            },
+            {
+              "id": "ffbb84de-d759-47d1-b39e-56d1f579a339",
+              "kind": "COMPONENT",
+              "reference": "HMI-02",
+              "name": "Warning light",
+              "description": "Blue LED beacon and projected floor light, on whenever the robot moves or stands in a corridor.",
+              "children": []
+            },
+            {
+              "id": "80657680-0c44-455d-b593-37e7ce9a0363",
+              "kind": "COMPONENT",
+              "reference": "HMI-03",
+              "name": "Speaker",
+              "description": "Spoken warnings and chimes at 60–75 dB(A), depending on the time of day.",
+              "children": []
+            }
+          ]
+        },
+        {
+          "id": "14c01418-9b88-4a35-ac71-90429c1467af",
+          "kind": "SUBSYSTEM",
+          "reference": "DCK",
+          "name": "Docking station",
+          "description": "Wall-mounted charging station in service corridor E0-S2.",
+          "children": [
+            {
+              "id": "6edec9bd-e91a-48b3-8dc5-fa7510064129",
+              "kind": "COMPONENT",
+              "reference": "DCK-01",
+              "name": "Charging plates",
+              "description": "Two charging plates at 12 cm height, energised only after the docked robot's handshake.",
+              "children": []
+            },
+            {
+              "id": "1c8aedca-eb3e-446c-b97b-fe1a8c97c7c3",
+              "kind": "COMPONENT",
+              "reference": "DCK-02",
+              "name": "Charger unit",
+              "description": "Mains-powered 30 A charger with earth-fault protection; charges as the BMS requests.",
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

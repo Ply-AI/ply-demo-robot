@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="780" viewBox="0 0 1440 780" role="img" aria-labelledby="title desc">
+  <title id="title">Ply Scrub S2 sensor architecture</title>
+  <desc id="desc">The front RGB camera feeds the main computer for person slowdown and remote video. The separate safety LiDAR, bumper, cliff sensors and emergency stops feed the safety control path for drive and brush stops.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="#496a65" stroke-width="1.5"/></marker>
+    <style>text{font-family:Arial,Helvetica,sans-serif;fill:#203d3a}.eyebrow{font-size:15px;letter-spacing:2px;font-weight:700}.title{font-size:38px;font-weight:700}.label{font-size:22px;font-weight:700}.body{font-size:18px}.small{font-size:16px}.muted{fill:#627673}.line{fill:none;stroke:#496a65;stroke-width:2;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect width="1440" height="780" rx="24" fill="#f3f6f2"/>
+  <text x="54" y="58" class="eyebrow">PLY / SCRUB S2</text>
+  <text x="54" y="111" class="title">One robot. Two sensing paths.</text>
+  <text x="54" y="146" class="body muted">RGB baseline · component references match RA-S2-WGH-01</text>
+  <rect x="54" y="182" width="1332" height="226" rx="18" fill="#e0eeea"/>
+  <text x="80" y="217" class="eyebrow">NAVIGATION + REMOTE VIEW</text>
+  <rect x="80" y="242" width="340" height="140" rx="12" fill="#fff" stroke="#b5d0c6"/>
+  <rect x="100" y="260" width="98" height="25" rx="12" fill="#1d6255"/>
+  <text x="116" y="278" class="small" style="fill:#fff">PER-01</text>
+  <text x="100" y="317" class="label">Front RGB camera</text>
+  <text x="100" y="346" class="body muted">1080p · 120° · 1.1 m height</text>
+  <text x="100" y="370" class="small muted">Not safety-rated · demo change target</text>
+  <path d="M422 312H502" class="line"/>
+  <rect x="515" y="260" width="330" height="112" rx="12" fill="#fff"/>
+  <text x="538" y="291" class="small muted">CTL-01 / SOFTWARE 4.2.1</text>
+  <text x="538" y="324" class="label">Main computer</text>
+  <text x="538" y="351" class="body muted">Person detection + navigation</text>
+  <path d="M848 312H925" class="line"/>
+  <text x="952" y="286" class="label">Early slowdown</text>
+  <text x="952" y="314" class="body muted">0.3 m/s near people</text>
+  <text x="952" y="349" class="label">Remote RGB view</text>
+  <text x="952" y="377" class="body muted">Video carried by CTL-04</text>
+  <rect x="54" y="428" width="1332" height="238" rx="18" fill="#e7ebef"/>
+  <text x="80" y="465" class="eyebrow">PROTECTIVE INPUTS + STOP CONTROL</text>
+  <rect x="80" y="487" width="340" height="151" rx="12" fill="#fff" stroke="#c3cdd6"/>
+  <text x="100" y="518" class="label">PER-02 · Safety LiDAR</text>
+  <text x="100" y="546" class="body muted">2D · 275° · 0.18 m height</text>
+  <path d="M100 560H400" stroke="#e2e8e6"/>
+  <text x="100" y="585" class="small muted">PER-04 bumper · PER-05 cliff sensors</text>
+  <text x="100" y="613" class="small muted">CTL-03 emergency-stop circuit</text>
+  <path d="M422 561H502" class="line"/>
+  <rect x="515" y="508" width="330" height="112" rx="12" fill="#fff"/>
+  <text x="538" y="539" class="small muted">CTL-02 / FIRMWARE 2.3.0</text>
+  <text x="538" y="572" class="label">Safety PLC + stop chain</text>
+  <text x="538" y="599" class="body muted">Independent of camera detections</text>
+  <path d="M848 561H925" class="line"/>
+  <text x="952" y="542" class="label">Drive + brushes stop</text>
+  <text x="952" y="572" class="body muted">Torque off · brakes engaged</text>
+  <text x="952" y="610" class="small muted">PER-02 stays in the proposed design</text>
+  <text x="54" y="712" class="label">Demo change: replace PER-01 with a navigation LiDAR.</text>
+  <text x="54" y="745" class="body muted">Review the lost camera capabilities. This diagram describes the source design, not certified mock software.</text>
+</svg>

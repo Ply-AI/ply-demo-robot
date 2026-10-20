@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="700" viewBox="0 0 1440 700" role="img" aria-labelledby="title desc">
+  <title id="title">Illustrative Westbrook General Hospital route</title>
+  <desc id="desc">Schematic showing the east corridor zones E0-1 to E0-3, central atrium, service corridor E0-S2 and DS-2 dock. Stairs and the mezzanine edge are excluded; fire doors require route controls. Not an actual floor plan.</desc>
+  <defs><style>text{font-family:Arial,Helvetica,sans-serif;fill:#203d3a}.eyebrow{font-size:15px;letter-spacing:2px;font-weight:700}.title{font-size:36px;font-weight:700}.label{font-size:22px;font-weight:700}.body{font-size:18px}.small{font-size:16px}.muted{fill:#657875}</style>
+    <pattern id="hatch" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="10" height="10" fill="#f7e5db"/><path d="M0 0V10" stroke="#e9baa1" stroke-width="3"/></pattern>
+  </defs>
+  <rect width="1440" height="700" rx="24" fill="#f5f5ef"/>
+  <text x="54" y="57" class="eyebrow">WESTBROOK GENERAL HOSPITAL / LEVEL 0</text>
+  <text x="54" y="108" class="title">A familiar route. A shared space.</text>
+  <text x="54" y="141" class="body muted">Illustrative site schematic · geometry is not to scale</text>
+  <rect x="70" y="245" width="710" height="156" rx="10" fill="#fff" stroke="#c5d0c7" stroke-width="3"/>
+  <path d="M304 246V399M540 246V399" stroke="#e0e6e0" stroke-width="2"/>
+  <text x="100" y="218" class="eyebrow">EAST CORRIDOR</text>
+  <text x="153" y="286" class="label">E0-1</text>
+  <text x="386" y="286" class="label">E0-2</text>
+  <text x="623" y="286" class="label">E0-3</text>
+  <rect x="779" y="181" width="385" height="304" rx="10" fill="#fff" stroke="#c5d0c7" stroke-width="3"/>
+  <rect x="1029" y="198" width="118" height="91" rx="6" fill="url(#hatch)"/>
+  <text x="1047" y="236" class="small">STAIRS</text>
+  <text x="1043" y="262" class="small">NO GO</text>
+  <text x="808" y="225" class="label">Central atrium</text>
+  <path d="M1158 315V464" stroke="#d99c7d" stroke-width="9"/>
+  <text x="1191" y="350" class="small">Mezzanine</text>
+  <text x="1191" y="373" class="small">edge</text>
+  <text x="1191" y="401" class="small muted">1 m buffer</text>
+  <rect x="415" y="400" width="220" height="162" rx="10" fill="#fff" stroke="#c5d0c7" stroke-width="3"/>
+  <text x="440" y="436" class="label">E0-S2</text>
+  <text x="440" y="461" class="small muted">Service corridor</text>
+  <path d="M159 330H963V423H863V330H615V514H603" stroke="#348a75" stroke-width="7" fill="none" stroke-linecap="round" stroke-dasharray="12 12"/>
+  <circle cx="159" cy="330" r="17" fill="#348a75" stroke="#fff" stroke-width="5"/>
+  <rect x="570" y="489" width="48" height="49" rx="7" fill="#264f46"/>
+  <path d="M583 504H605M583 513H605M583 522H605" stroke="#fff" stroke-width="3"/>
+  <text x="657" y="517" class="label">DS-2 dock</text>
+  <text x="657" y="546" class="small muted">Separate fire compartment</text>
+  <path d="M321 311V353M340 311V353M721 311V353M740 311V353" stroke="#c68451" stroke-width="4"/>
+  <text x="288" y="380" class="small muted">FD-E0-04</text>
+  <text x="674" y="380" class="small muted">FD-E0-05</text>
+  <text x="808" y="461" class="small muted">Atrium cleaning: 06–08 / 20–22</text>
+  <circle cx="82" cy="612" r="7" fill="#348a75"/>
+  <text x="100" y="618" class="body">Illustrative cleaning route</text>
+  <rect x="423" y="603" width="19" height="19" fill="url(#hatch)"/>
+  <text x="454" y="618" class="body">Excluded edge / stairs</text>
+  <path d="M757 603V623M765 603V623" stroke="#c68451" stroke-width="4"/>
+  <text x="779" y="618" class="body">Fire doors: explicit route controls</text>
+  <text x="54" y="667" class="small muted">Source references: WGH-FM-PLN-112 rev C · S2-ROUTE-E0 v3. Referenced plans are not included in this demo.</text>
+</svg>

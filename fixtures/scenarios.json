@@ -1,0 +1,17 @@
+[
+  {"name": "corridor-cleaning", "mode": "autonomous", "cleaning": true},
+  {"name": "person-ahead", "mode": "autonomous", "person_distance_m": 1.5, "cleaning": true},
+  {"name": "protective-stop", "mode": "autonomous", "protective_field": true, "cleaning": true},
+  {"name": "bumper-contact", "mode": "autonomous", "bumper": true, "cleaning": true},
+  {"name": "atrium-edge", "mode": "autonomous", "cliff": true, "cleaning": true},
+  {"name": "emergency-stop", "mode": "autonomous", "e_stop": true, "cleaning": true},
+  {"name": "deck-lifted", "mode": "autonomous", "deck_lifted": true, "cleaning": true},
+  {"name": "remote-recovery", "mode": "teleoperation", "video_latency_ms": 120, "heartbeat_age_ms": 80},
+  {"name": "video-lag", "mode": "teleoperation", "video_latency_ms": 350},
+  {"name": "link-loss", "mode": "teleoperation", "heartbeat_age_ms": 500},
+  {"name": "camera-unavailable", "mode": "teleoperation", "camera_available": false},
+  {"name": "camera-lost-autonomy", "mode": "autonomous", "camera_available": false},
+  {"name": "setup-mapping", "mode": "setup", "hold_to_run": true},
+  {"name": "setup-released", "mode": "setup", "hold_to_run": false},
+  {"name": "dock-approach", "mode": "docking"}
+]

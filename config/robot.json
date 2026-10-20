@@ -1,0 +1,65 @@
+{
+  "model": "Ply Scrub S2",
+  "variant": "H",
+  "unit_ids": ["S2-0417", "S2-0418"],
+  "assessment": "RA-S2-WGH-01.json",
+  "navigation_version": "4.2.1",
+  "safety_plc_firmware": "2.3.0",
+  "mass_kg": 180,
+  "cleaning_width_m": 0.6,
+  "speed_limits_mps": {
+    "autonomous": 0.8,
+    "teleoperation": 0.5,
+    "setup": 0.3,
+    "docking": 0.2
+  },
+  "perception": {
+    "component_ref": "PER-01",
+    "type": "rgb_camera",
+    "resolution_px": [1920, 1080],
+    "horizontal_fov_deg": 120,
+    "mount_height_m": 1.1,
+    "connected_to": "CTL-01",
+    "safety_rated": false,
+    "outputs": ["person_detections", "rgb_video"],
+    "person_slowdown_distance_m": 2.0,
+    "person_slowdown_speed_mps": 0.3
+  },
+  "safety_scanner": {
+    "component_ref": "PER-02",
+    "type": "2d_safety_lidar",
+    "mount_height_m": 0.18,
+    "horizontal_fov_deg": 275,
+    "connected_to": "CTL-02",
+    "safety_rated_in_assessment": true
+  },
+  "teleoperation": {
+    "link_component_ref": "CTL-04",
+    "video_source_ref": "PER-01",
+    "requires_rgb_video": true,
+    "max_video_latency_ms": 300,
+    "heartbeat_timeout_ms": 500
+  },
+  "cleaning": {
+    "component_ref": "CLN-01",
+    "brush_count": 2,
+    "brush_diameter_m": 0.33,
+    "brush_speed_rpm": 200,
+    "solution_tank_l": 40,
+    "recovery_tank_l": 40,
+    "detergent_percent": 0.5
+  },
+  "power": {
+    "component_ref": "PWR-01",
+    "chemistry": "NMC",
+    "nominal_voltage_v": 25.2,
+    "capacity_ah": 150,
+    "cell_charge_limit_v": 4.2,
+    "thermal_cutoff_c": 55
+  },
+  "dock": {
+    "model": "DS-2",
+    "location": "E0-S2",
+    "charger_current_a": 30
+  }
+}
