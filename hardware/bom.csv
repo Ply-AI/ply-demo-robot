@@ -23,4 +23,4 @@ HMI-01,ca7ee1b0-3e49-4da0-b614-1060c86d6c2f,Touchscreen,"10-inch touchscreen at 
 HMI-02,ffbb84de-d759-47d1-b39e-56d1f579a339,Warning light,"Blue LED beacon and projected floor light, on whenever the robot moves or stands in a corridor."
 HMI-03,80657680-0c44-455d-b593-37e7ce9a0363,Speaker,"Spoken warnings and chimes at 60–75 dB(A), depending on the time of day."
 DCK-01,6edec9bd-e91a-48b3-8dc5-fa7510064129,Charging plates,"Two charging plates at 12 cm height, energised only after the docked robot's handshake."
-DCK-02,1c8aedca-eb3e-446c-b97b-fe1a8c97c7c3,Charger unit,Mains-powered 30 A charger with earth-fault protection; charges as the BMS requests.
+DCK-02,1c8aedca-eb3e-446c-b97b-fe1a8c97c7c3,Charger unit,"PLY-CH1 charger built in-house: mains-powered, 30 A; charges as the BMS requests."

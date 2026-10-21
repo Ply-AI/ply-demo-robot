@@ -60,6 +60,7 @@
   "dock": {
     "model": "DS-2",
     "location": "E0-S2",
+    "charger_model": "PLY-CH1",
     "charger_current_a": 30
   }
 }
