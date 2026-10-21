@@ -75,3 +75,12 @@ being developed separately and is not implemented here.
 
 [`hardware/bom.csv`](../hardware/bom.csv) is a component inventory, not a purchasing
 list. It deliberately contains no invented suppliers, prices or part numbers.
+
+## Over-the-air updates
+
+[`scrub_s2/ota.py`](../scrub_s2/ota.py) checks an update manifest over the hospital
+Wi-Fi (CTL-04) every hour and installs newer navigation software and firmware once
+the robot is docked and idle. Each payload is verified against the SHA-256 in the
+manifest before it is applied. Targets and the install conditions live under `ota`
+in [`config/robot.json`](../config/robot.json). The mockup downloads and flashes
+nothing; manifests and payloads come from the tests.

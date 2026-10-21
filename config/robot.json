@@ -40,6 +40,19 @@
     "max_video_latency_ms": 300,
     "heartbeat_timeout_ms": 500
   },
+  "ota": {
+    "enabled": true,
+    "link_component_ref": "CTL-04",
+    "network": "hospital_wifi",
+    "manifest_url": "https://updates.ply-scrub.example/s2/h/manifest.json",
+    "targets": {
+      "navigation": "CTL-01",
+      "safety_plc_firmware": "CTL-02"
+    },
+    "check_interval_min": 60,
+    "checksum": "sha256",
+    "install_requires": ["docked", "idle"]
+  },
   "cleaning": {
     "component_ref": "CLN-01",
     "brush_count": 2,
