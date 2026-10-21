@@ -38,7 +38,8 @@
     "video_source_ref": "PER-01",
     "requires_rgb_video": true,
     "max_video_latency_ms": 300,
-    "heartbeat_timeout_ms": 500
+    "heartbeat_timeout_ms": 500,
+    "networks": ["WGH-Staff", "WGH-Guest"]
   },
   "cleaning": {
     "component_ref": "CLN-01",
