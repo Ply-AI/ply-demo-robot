@@ -15,13 +15,14 @@
   },
   "perception": {
     "component_ref": "PER-01",
-    "type": "rgb_camera",
-    "resolution_px": [1920, 1080],
+    "type": "lidar_3d",
+    "channels": 32,
+    "range_m": 30,
     "horizontal_fov_deg": 120,
     "mount_height_m": 1.1,
     "connected_to": "CTL-01",
     "safety_rated": false,
-    "outputs": ["person_detections", "rgb_video"],
+    "outputs": ["person_detections", "point_cloud"],
     "person_slowdown_distance_m": 2.0,
     "person_slowdown_speed_mps": 0.3
   },
@@ -36,7 +37,8 @@
   "teleoperation": {
     "link_component_ref": "CTL-04",
     "video_source_ref": "PER-01",
-    "requires_rgb_video": true,
+    "requires_rgb_video": false,
+    "operator_view": "point_cloud",
     "max_video_latency_ms": 300,
     "heartbeat_timeout_ms": 500
   },
