@@ -40,6 +40,9 @@
     "max_video_latency_ms": 300,
     "heartbeat_timeout_ms": 500
   },
+  "brakes": {
+    "engage_delay_ms": 400
+  },
   "cleaning": {
     "component_ref": "CLN-01",
     "brush_count": 2,

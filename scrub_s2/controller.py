@@ -2,6 +2,7 @@
 
 import math
 
+from .brakes import brakes_engaged
 from .perception import RgbCamera
 from .safety import stop_reasons
 from .teleoperation import view_inhibit_reasons
@@ -36,7 +37,7 @@ def simulate(config, frame):
         "brushes_rpm": config["cleaning"]["brush_speed_rpm"]
         if moving and mode == "autonomous" and frame.get("cleaning", False)
         and not frame.get("deck_lifted", False) else 0,
-        "brakes_engaged": not moving,
+        "brakes_engaged": brakes_engaged(moving, reasons, frame, config["brakes"]),
         "rgb_video_available": perception.rgb_video_available,
         "person_slowdown": perception.person_nearby,
         "stop_reasons": reasons,
