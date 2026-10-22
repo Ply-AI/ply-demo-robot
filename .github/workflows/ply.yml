@@ -1,0 +1,42 @@
+name: Ply
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  change-impact:
+    name: Ply · change impact
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Collect the change
+        run: |
+          git diff --name-only "origin/${{ github.base_ref }}...HEAD" | tee changed.txt
+      - name: Send the pull request to Ply
+        env:
+          PLY_URL: ${{ secrets.PLY_URL }}
+          PLY_TOKEN: ${{ secrets.PLY_TOKEN }}
+          TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          payload=$(jq -n --arg repo "${{ github.repository }}" --argjson number ${{ github.event.number }} \
+            --arg title "$TITLE" --arg sha "${{ github.event.pull_request.head.sha }}" \
+            --rawfile files changed.txt '{repo: $repo, number: $number, title: $title, headSha: $sha, files: ($files | split("\n") | map(select(. != "")))}')
+          echo "$payload" | jq .
+          if [ -n "$PLY_URL" ]; then
+            curl -fsS -X POST "$PLY_URL" -H "Authorization: Bearer $PLY_TOKEN" -H "Content-Type: application/json" -d "$payload"
+          else
+            echo "::notice title=Ply::PLY_URL is not set; the pull request was not sent."
+          fi
+      - name: Summary
+        run: |
+          {
+            echo "### Ply · change impact"
+            echo "Pull request #${{ github.event.number }} goes to Ply as a change request for **RA-S2-WGH-01**."
+            echo "Ply Copilot proposes the change to the system model; fixed rules trace its impact; people decide."
+          } >> "$GITHUB_STEP_SUMMARY"
