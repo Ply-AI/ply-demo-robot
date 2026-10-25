@@ -51,11 +51,11 @@
   },
   "power": {
     "component_ref": "PWR-01",
-    "chemistry": "NMC",
-    "nominal_voltage_v": 25.2,
+    "chemistry": "LFP",
+    "nominal_voltage_v": 25.6,
     "capacity_ah": 150,
-    "cell_charge_limit_v": 4.2,
-    "thermal_cutoff_c": 55
+    "cell_charge_limit_v": 3.65,
+    "thermal_cutoff_c": 60
   },
   "dock": {
     "model": "DS-2",
