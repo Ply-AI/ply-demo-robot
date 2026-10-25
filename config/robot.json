@@ -8,7 +8,7 @@
   "mass_kg": 180,
   "cleaning_width_m": 0.6,
   "speed_limits_mps": {
-    "autonomous": 0.8,
+    "autonomous": 0.6,
     "teleoperation": 0.5,
     "setup": 0.3,
     "docking": 0.2
