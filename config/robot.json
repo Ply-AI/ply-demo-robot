@@ -44,7 +44,7 @@
     "component_ref": "CLN-01",
     "brush_count": 2,
     "brush_diameter_m": 0.33,
-    "brush_speed_rpm": 200,
+    "brush_speed_rpm": 250,
     "solution_tank_l": 40,
     "recovery_tank_l": 40,
     "detergent_percent": 0.5
