@@ -1,7 +1,6 @@
-"""PER-01 → CTL-01: mock camera detections and video capability.
+"""PER-01 → CTL-01: mock person detections and the operator view.
 
-Detections are supplied by fixtures, not computer vision. This module is the
-primary implementation seam for the future RGB-camera replacement.
+Detections are supplied by fixtures, not computer vision or point-cloud clustering.
 """
 
 from dataclasses import dataclass
@@ -11,22 +10,44 @@ from dataclasses import dataclass
 class PerceptionResult:
     person_nearby: bool
     rgb_video_available: bool
+    view_available: bool
     source_ref: str
 
 
 class RgbCamera:
     def __init__(self, config):
-        if config["type"] != "rgb_camera":
-            raise ValueError("Only the RGB baseline is implemented. Add a sensor adapter for a replacement.")
         self.config = config
 
     def observe(self, frame):
         available = frame.get("camera_available", True)
-        distance = frame.get("person_distance_m")
-        person_nearby = (available and distance is not None
-                         and 0 <= distance <= self.config["person_slowdown_distance_m"])
-        return PerceptionResult(
-            person_nearby=person_nearby,
-            rgb_video_available=available and "rgb_video" in self.config["outputs"],
-            source_ref=self.config["component_ref"],
-        )
+        video = available and "rgb_video" in self.config["outputs"]
+        return PerceptionResult(_person_nearby(self.config, frame, available), video, video,
+                                self.config["component_ref"])
+
+
+class Lidar3d:
+    """Front 3D LiDAR: people from point clusters, operator view rendered from the point cloud."""
+
+    def __init__(self, config):
+        self.config = config
+
+    def observe(self, frame):
+        available = frame.get("camera_available", True)
+        view = available and "point_cloud" in self.config["outputs"]
+        return PerceptionResult(_person_nearby(self.config, frame, available), False, view,
+                                self.config["component_ref"])
+
+
+SENSORS = {"rgb_camera": RgbCamera, "lidar_3d": Lidar3d}
+
+
+def sensor(config):
+    if config["type"] not in SENSORS:
+        raise ValueError(f"No sensor adapter for {config['type']}")
+    return SENSORS[config["type"]](config)
+
+
+def _person_nearby(config, frame, available):
+    distance = frame.get("person_distance_m")
+    return (available and distance is not None
+            and 0 <= distance <= config["person_slowdown_distance_m"])

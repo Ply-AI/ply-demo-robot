@@ -2,7 +2,7 @@
 
 import math
 
-from .perception import RgbCamera
+from .perception import sensor
 from .safety import stop_reasons
 from .teleoperation import view_inhibit_reasons
 
@@ -14,7 +14,7 @@ def simulate(config, frame):
     requested = frame.get("requested_speed_mps", config["speed_limits_mps"][mode])
     if not isinstance(requested, (int, float)) or not math.isfinite(requested) or requested < 0:
         raise ValueError("Requested speed must be a finite, non-negative number")
-    perception = RgbCamera(config["perception"]).observe(frame)
+    perception = sensor(config["perception"]).observe(frame)
     reasons = stop_reasons(frame, config["teleoperation"])
     reasons += view_inhibit_reasons(frame, perception, config["teleoperation"])
     # A demo design choice: missing camera input holds autonomous movement.

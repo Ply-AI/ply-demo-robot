@@ -41,7 +41,7 @@ def main():
               f"{result['speed_mps']:>5.1f} m/s {result['brushes_rpm']:>6} rpm")
         for reason in result["stop_reasons"]:
             print(f"    ↳ {reason}")
-    print("\n  PER-01 RGB camera → CTL-01 main computer")
+    print("\n  PER-01 3D LiDAR → CTL-01 main computer")
     print("  PER-02 safety LiDAR → CTL-02 safety PLC (separate path)\n")
 
 
